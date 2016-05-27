@@ -1,0 +1,58 @@
+{
+  "name": "cloudinary",
+  "version": "0.0.1",
+  "description": "cloudinary experiments",
+  "main": "index.jsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cloudinary"
+  ],
+  "author": "gannoncurran",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "cookie-parser": "^1.4.3",
+    "debug": "^2.2.0",
+    "express": "^4.13.4",
+    "morgan": "^1.7.0",
+    "request": "^2.72.0",
+    "serve-favicon": "^2.3.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "axios": "^0.11.1",
+    "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "css-loader": "^0.23.1",
+    "eslint": "^2.11.0",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.1",
+    "eslint-plugin-jsx-a11y": "^1.2.2",
+    "eslint-plugin-react": "^5.1.1",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "history": "^2.1.2",
+    "html-webpack-plugin": "^2.17.0",
+    "json-loader": "^0.5.4",
+    "node-sass": "^3.7.0",
+    "postcss-loader": "^0.9.1",
+    "raw-loader": "^0.5.1",
+    "react": "^15.1.0",
+    "react-dom": "^15.1.0",
+    "react-hot-loader": "^1.3.0",
+    "react-router": "^2.4.1",
+    "rimraf": "^2.5.2",
+    "sass-loader": "^3.2.0",
+    "scroll-behavior": "^0.7.0",
+    "stats-webpack-plugin": "^0.3.1",
+    "style-loader": "^0.13.1",
+    "webpack": "^1.13.1",
+    "webpack-dev-middleware": "^1.6.1",
+    "webpack-hot-middleware": "^2.10.0"
+  }
+}
