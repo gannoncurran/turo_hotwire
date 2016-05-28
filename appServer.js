@@ -1,5 +1,4 @@
 const express = require('express');
-const request = require('request');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
@@ -10,10 +9,10 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 const app = express();
 
 if (isDeveloping) {
-  const webpack = require('webpack');
-  const webpackMiddleware = require('webpack-dev-middleware');
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const config = require('./webpack.config.js');
+  const webpack = require('webpack'); // eslint-disable-line global-require
+  const webpackMiddleware = require('webpack-dev-middleware'); // eslint-disable-line global-require
+  const webpackHotMiddleware = require('webpack-hot-middleware'); // eslint-disable-line global-require, max-len
+  const config = require('./webpack.config.js'); // eslint-disable-line global-require
 
   const compiler = webpack(config);
   const middleware = webpackMiddleware(compiler, {
@@ -35,10 +34,6 @@ if (isDeveloping) {
     res.write(middleware.fileSystem.readFileSync(path.join(__dirname, 'public', 'index.html')));
     res.end();
   });
-
-  app.post('/v1/applications', (req, res, body) => {
-    req.pipe(request.post('https://9b7457b5a16e6f69f5a688bd97030091:@api.greenhouse.io/v1/applications/', body)).pipe(res);
-  });
 } else {
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
@@ -50,11 +45,6 @@ if (isDeveloping) {
   app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
   });
-
-  app.post('/v1/applications', (req, res, body) => {
-    req.pipe(request.post('https://9b7457b5a16e6f69f5a688bd97030091:@api.greenhouse.io/v1/applications/', body)).pipe(res);
-  });
-
   // catch 404 and forward to error handler
   app.use((req, res, next) => {
     const err = new Error('Not Found');

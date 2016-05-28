@@ -1,11 +1,14 @@
-import React, { // eslint-disable-line no-unused-vars
+import React, {
   PropTypes,
 } from 'react';
 
 const App = ({
   children,
 }) => (
-  { children }
+  <div>
+    <h1>App</h1>
+    {children}
+  </div>
 );
 
 App.propTypes = {
