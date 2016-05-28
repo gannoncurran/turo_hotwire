@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+console.log('WEBPACKing FOR DEVELOPMENT\n'); // eslint-disable-line no-console
 
 module.exports = {
   devtool: 'eval-source-map',
@@ -55,6 +56,11 @@ module.exports = {
       {
         test: /\.scss?$/,
         loader: 'style!raw!postcss!sass', // using !raw to prevent url refs from inlining.
+        include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.css?$/,
+        loader: 'style!raw', // using !raw to prevent url refs from inlining.
         include: path.join(__dirname, 'src'),
       },
     ],

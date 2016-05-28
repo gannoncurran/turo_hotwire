@@ -9,6 +9,7 @@ const isDeveloping = process.env.NODE_ENV !== 'production';
 const app = express();
 
 if (isDeveloping) {
+  console.log('DEVELOPMENT: Serving with WebPack Middleware'); // eslint-disable-line no-console
   const webpack = require('webpack'); // eslint-disable-line global-require
   const webpackMiddleware = require('webpack-dev-middleware'); // eslint-disable-line global-require
   const webpackHotMiddleware = require('webpack-hot-middleware'); // eslint-disable-line global-require, max-len
@@ -35,6 +36,7 @@ if (isDeveloping) {
     res.end();
   });
 } else {
+  console.log('PRODUCTION: Serving built files from public/index.html'); // eslint-disable-line no-console, max-len
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(bodyParser.json());

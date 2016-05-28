@@ -2,11 +2,14 @@ import React, {
   PropTypes,
 } from 'react';
 
+import '../styles/normalize.css';
+import '../styles/app.scss';
+
 const App = ({
   children,
 }) => (
-  <div>
-    <h1>App</h1>
+  <div className="container">
+    <h1 className="headline">App</h1>
     {children}
   </div>
 );

@@ -5,6 +5,11 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
+console.log(  // eslint-disable-line no-console
+  'WEBPACK BUILDING FOR PRODUCTION',
+  '\nprocess.env.NODE_ENV =', process.env.NODE_ENV, '\n'
+);
+
 module.exports = {
   entry: [
     path.join(__dirname, 'src', 'index.jsx'),
@@ -63,6 +68,11 @@ module.exports = {
       {
         test: /\.scss?$/,
         loader: ExtractTextPlugin.extract(['css', 'postcss', 'sass']),
+        include: path.join(__dirname, 'src'),
+      },
+      {
+        test: /\.css?$/,
+        loader: ExtractTextPlugin.extract(['css']),
         include: path.join(__dirname, 'src'),
       },
     ],
