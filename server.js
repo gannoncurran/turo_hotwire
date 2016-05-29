@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
 
 // Module dependencies.
 const app = require('./appServer.js');
@@ -42,11 +43,11 @@ function onError(error) {
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      console.error(`${bind} requires elevated privileges`); // eslint-disable-line no-console
+      console.error(`${bind} requires elevated privileges`);
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      console.error(`${bind} is already in use`); // eslint-disable-line no-console
+      console.error(`${bind} is already in use`);
       process.exit(1);
       break;
     default:
@@ -61,7 +62,7 @@ function onListening() {
     ? `pipe ${addr}`
     : `port ${addr.port}`;
   debug(`Listening on ${bind}`);
-  console.log(`We are listening on ${bind}`); // eslint-disable-line no-console
+  console.log(`We are listening on ${bind}`);
 }
 
 // Listen on provided port, on all network interfaces.
