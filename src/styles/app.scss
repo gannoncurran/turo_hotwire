@@ -1,10 +1,37 @@
+$gray-9: #999;
+$gray-6: #666;
+
 .container {
   margin: 40px;
 }
+
 .headline {
-  color: #666;
+  color: $gray-6;
 }
 
 .subhead {
-  color: #999;
+  color: $gray-9;
+}
+
+.logo {
+  height: 50px;
+  width: 50px;
+  background-image: url('/images/ele_logo.svg');
+  background-position: left top;
+  background-size: cover;
+  position: absolute;
+  top: 40px;
+  right: 40px;
+}
+
+.nav {
+  height: 40px;
+  border-bottom: 1px solid $gray-9;
+  margin-bottom: 20px;
+
+  &__item {
+    text-transform: uppercase;
+    font-size: 12px;
+    padding-right: 10px;
+  }
 }
