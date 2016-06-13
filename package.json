@@ -2,13 +2,14 @@
   "name": "express_webpack_react",
   "version": "0.0.1",
   "description": "Express, Webpack, React Skeleton with dev and production server setup",
-  "repository" : {
-    "type" : "git", "url" : "https://github.com/HelloElephant/express_webpack_react"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloElephant/express_webpack_react"
   },
   "main": "index.jsx",
-  "engines" : {
-    "node" : "=4.4.3",
-    "npm" : "=2.15.1"
+  "engines": {
+    "node": "=4.4.3",
+    "npm": "=2.15.1"
   },
   "private": true,
   "scripts": {
@@ -43,7 +44,9 @@
     "babel-preset-es2015": "^6.9.0",
     "babel-preset-react": "^6.5.0",
     "babel-preset-stage-0": "^6.5.0",
+    "chai": "^3.5.0",
     "css-loader": "^0.23.1",
+    "enzyme": "^2.3.0",
     "eslint": "^2.11.0",
     "eslint-config-airbnb": "^9.0.1",
     "eslint-plugin-import": "^1.8.1",
@@ -53,6 +56,7 @@
     "history": "^2.1.2",
     "html-webpack-plugin": "^2.17.0",
     "json-loader": "^0.5.4",
+    "mocha": "^2.5.3",
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",
