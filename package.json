@@ -2,7 +2,15 @@
   "name": "express_webpack_react",
   "version": "0.0.1",
   "description": "Express, Webpack, React Skeleton with dev and production server setup",
+  "repository" : {
+    "type" : "git", "url" : "https://github.com/HelloElephant/express_webpack_react"
+  },
   "main": "index.jsx",
+  "engines" : {
+    "node" : "=4.4.3",
+    "npm" : "=2.15.1"
+  },
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
