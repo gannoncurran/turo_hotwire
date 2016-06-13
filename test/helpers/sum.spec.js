@@ -1,3 +1,4 @@
+// sample test to demo testing setup. Remove this.
 import { expect } from 'chai';
 
 import sum from '../../src/helpers/sum';
