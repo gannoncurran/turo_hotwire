@@ -16,7 +16,7 @@
     "test": "find ./src -name '*spec.js' | xargs mocha ./config/jsdom/setup.js",
     "test:watch": "npm test -- --watch",
     "start": "node server.js",
-    "production": "npm run build && NODE_ENV=production node server.js",
+    "production": "npm test && npm run build && NODE_ENV=production node server.js",
     "build": "rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
   },
   "keywords": [

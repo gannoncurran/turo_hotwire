@@ -41,7 +41,7 @@ if (isDeveloping) {
     res.end();
   });
 } else {
-  console.log('PRODUCTION: Serving built files from assets/ and then public/ respectively');
+  console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(bodyParser.json());
