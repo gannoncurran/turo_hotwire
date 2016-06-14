@@ -13,7 +13,7 @@
   },
   "private": true,
   "scripts": {
-    "test": "find ./src -name '*spec.js' | xargs mocha ./config/jsdom/setup.js",
+    "test": "mocha ./config/jsdom/setup.js \"./src/**/*.spec.js\"",
     "test:watch": "npm test -- --watch",
     "start": "node server.js",
     "production": "npm test && npm run build && NODE_ENV=production node server.js",
