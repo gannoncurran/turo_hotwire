@@ -13,7 +13,7 @@
   },
   "private": true,
   "scripts": {
-    "test": "mocha ./config/jsdom/setup.js --recursive ./test",
+    "test": "find ./src -name '*spec.js' | xargs mocha ./config/jsdom/setup.js",
     "test:watch": "npm test -- --watch",
     "start": "node server.js",
     "production": "npm run build && NODE_ENV=production node server.js",

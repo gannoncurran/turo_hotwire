@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { expect } from 'chai';
 
-import Testable from '../../src/components/Testable';
+import Testable from './Testable';
 
 describe('<Testable />', () => {
   it('should render name prop into the first paragraph', () => {
