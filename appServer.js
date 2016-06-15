@@ -3,6 +3,7 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
@@ -44,6 +45,7 @@ if (isDeveloping) {
   console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
+  app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());

@@ -11,6 +11,7 @@ console.log(  // eslint-disable-line no-console
 );
 
 module.exports = {
+  devtool: false,
   entry: {
     main: [
       path.join(__dirname, 'src', 'index.jsx'),
