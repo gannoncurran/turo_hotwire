@@ -11,34 +11,51 @@ console.log(  // eslint-disable-line no-console
 );
 
 module.exports = {
-  entry: [
-    path.join(__dirname, 'src', 'index.jsx'),
-  ],
+  devtool: false,
+  entry: {
+    main: [
+      path.join(__dirname, 'src', 'index.jsx'),
+    ],
+    vendor: [
+      'react',
+      'react-dom',
+      'react-router',
+    ],
+  },
   output: {
     path: path.join(__dirname, 'public'),
     filename: '[name]-[hash].min.js',
     publicPath: '/',
   },
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new ExtractTextPlugin('[name]-[hash].min.css'),
     new HtmlWebpackPlugin({
       template: 'src/index.tpl.html',
       inject: 'body',
       filename: 'index.html',
     }),
-    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.AggressiveMergingPlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      filename: 'vendor.js',
+      minChunks: 2,
+    }),
+    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
-      compressor: {
+      compress: {
+        unused: true,
+        dead_code: true,
         warnings: false,
         screw_ie8: true,
       },
     }),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+    }),
     new StatsPlugin('webpack.stats.json', {
       source: false,
       modules: false,
-    }),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
   ],
   resolve: {

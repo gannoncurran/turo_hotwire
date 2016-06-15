@@ -1,7 +1,7 @@
 // sample test to demo testing setup. Remove this.
 import { expect } from 'chai';
 
-import sum from '../../src/helpers/sum';
+import sum from './sum';
 
 describe('Sum', () => {
   it('adds two integers', () => {

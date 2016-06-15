@@ -3,6 +3,9 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+// check compression and compression options as site grows to make sure it's reducing
+// overall page render time -- compare mobile on slow connection vs desktop etc.
+const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
@@ -13,10 +16,6 @@ if (isDeveloping) {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
   const webpackConfig = require('./webpack.config.js');
-  const compiler = webpack(webpackConfig);
-
-  const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackDevMiddlewareOptions = {
     publicPath: webpackConfig.output.publicPath,
     contentBase: 'src',
@@ -25,25 +24,31 @@ if (isDeveloping) {
       hash: false,
       timings: true,
       chunks: false,
-      chunkModules: false,
+      chunkModules: true,
       modules: false,
     },
   };
+  const webpackDevMiddleware = require('webpack-dev-middleware');
+  const webpackHotMiddleware = require('webpack-hot-middleware');
+  const compiler = webpack(webpackConfig);
   const devMiddleware = webpackDevMiddleware(compiler, webpackDevMiddlewareOptions);
 
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
   app.use(devMiddleware);
-  app.use(webpackHotMiddleware(compiler));
+  app.use(webpackHotMiddleware(compiler, {
+    log: console.log,
+  }));
   app.use(express.static(path.join(__dirname, 'assets')));
   app.get('*', (req, res) => {
     res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'public', 'index.html')));
     res.end();
   });
 } else {
-  console.log('PRODUCTION: Serving built files from assets/ and then public/ respectively');
+  console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
+  app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());

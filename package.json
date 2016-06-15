@@ -13,11 +13,11 @@
   },
   "private": true,
   "scripts": {
-    "test": "mocha ./config/jsdom/setup.js --recursive ./test",
-    "test:watch": "npm test -- --watch",
+    "test": "mocha config/jsdom/setup.js \"src/**/*.spec.js\" --reporter progress",
+    "test:watch": "npm run test -- --watch --watch-extensions jsx",
     "start": "node server.js",
-    "production": "npm run build && NODE_ENV=production node server.js",
-    "build": "rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
+    "production": "npm test && npm run build && NODE_ENV=production node server.js",
+    "build": "npm test && rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
   },
   "keywords": [
     "express",
@@ -29,6 +29,7 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.15.1",
+    "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "debug": "^2.2.0",
     "express": "^4.13.4",

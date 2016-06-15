@@ -6,9 +6,10 @@ const autoprefixer = require('autoprefixer');
 console.log('WEBPACKing FOR DEVELOPMENT\n'); // eslint-disable-line no-console
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack-hot-middleware/client?reload=true',
+    'webpack/hot/only-dev-server',
+    'webpack-hot-middleware/client',
     path.join(__dirname, 'src', 'index.jsx'),
   ],
   output: {
@@ -17,16 +18,16 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.NoErrorsPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('development'),
+    }),
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src', 'index.tpl.html'),
       inject: 'body',
       filename: 'index.html',
-    }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
   ],
   resolve: {
@@ -43,8 +44,12 @@ module.exports = {
     loaders: [
       {
         test: /\.jsx?$/,
-        loader: 'react-hot!babel?cacheDirectory,presets[]=es2015,presets[]=react,presets[]=stage-0',
-        include: path.join(__dirname, 'src'),
+        loader: 'babel',
+        exclude: /(node_modules|server)/,
+        query: {
+          cacheDirectory: true,
+          presets: ['es2015', 'react', 'stage-0'],
+        },
       },
       {
         test: /\.json/,
