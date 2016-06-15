@@ -13,7 +13,8 @@
   },
   "private": true,
   "scripts": {
-    "test": "mocha ./config/jsdom/setup.js \"./src/**/*.spec.js\"",
+    "test": "mocha config/jsdom/setup.js \"src/**/*.spec.js\" --reporter progress",
+    "test:watch": "npm run test -- --watch --watch-extensions jsx",
     "start": "node server.js",
     "production": "npm test && npm run build && NODE_ENV=production node server.js",
     "build": "npm test && rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
