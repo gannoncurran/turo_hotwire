@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
+// check compression and compression options as site grows to make sure it's reducing
+// overall page render time -- compare mobile on slow connection vs desktop etc.
 const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
