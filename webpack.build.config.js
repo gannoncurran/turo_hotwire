@@ -1,9 +1,9 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const StatsPlugin = require('stats-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const AssetsPlugin = require('assets-webpack-plugin');
 
 console.log(  // eslint-disable-line no-console
   'WEBPACK BUILDING FOR PRODUCTION',
@@ -29,11 +29,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('[name]-[hash].min.css'),
-    new HtmlWebpackPlugin({
-      template: 'src/index.tpl.html',
-      inject: 'body',
-      filename: 'index.html',
-    }),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -57,6 +52,7 @@ module.exports = {
       source: false,
       modules: false,
     }),
+    new AssetsPlugin({ filename: 'assets.json' }),
   ],
   resolve: {
     extensions: [

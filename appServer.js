@@ -1,13 +1,15 @@
 /* eslint-disable no-console, global-require */
 const express = require('express');
+const fs = require('fs');
 const path = require('path');
 const favicon = require('serve-favicon');
 const logger = require('morgan');
 // check compression and compression options as site grows to make sure it's reducing
 // overall page render time -- compare mobile on slow connection vs desktop etc.
-const compression = require('compression');
+// const compression = require('compression');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const template = require('lodash.template');
 
 const isDeveloping = process.env.NODE_ENV !== 'production';
 const app = express();
@@ -48,14 +50,20 @@ if (isDeveloping) {
   console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
   app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
   app.use(logger('dev'));
-  app.use(compression());
+  // app.use(compression());
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
   app.use(cookieParser());
   app.use(express.static(path.join(__dirname, 'assets')));
   app.use(express.static(path.join(__dirname, 'public')));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+    const assets = require('./assets');
+    const index = fs.readFileSync('./src/index.prod.tpl', 'utf8');
+    const compileIndex = template(index);
+    // TODO: change data.html object so it contains reactRenderToString data
+    const data = {};
+    data.html = '<div>YES</div>';
+    res.send(compileIndex({ data, assets }));
   });
 }
 // catch 404 and forward to error handler
