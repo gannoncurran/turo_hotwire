@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 
 console.log('WEBPACKing FOR DEVELOPMENT\n'); // eslint-disable-line no-console
@@ -23,11 +22,6 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
-    }),
-    new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.tpl.html'),
-      inject: 'body',
-      filename: 'index.html',
     }),
   ],
   resolve: {
