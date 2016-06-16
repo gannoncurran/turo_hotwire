@@ -43,8 +43,12 @@ if (isDeveloping) {
   }));
   app.use(express.static(path.join(__dirname, 'assets')));
   app.get('*', (req, res) => {
-    res.write(devMiddleware.fileSystem.readFileSync(path.join(__dirname, 'public', 'index.html')));
-    res.end();
+    const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
+    const compileIndex = template(index);
+    // TODO: change data.html object so it contains reactRenderToString data
+    const data = {};
+    data.html = '<div>YES</div>';
+    res.send(compileIndex({ data }));
   });
 } else {
   console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
@@ -58,7 +62,7 @@ if (isDeveloping) {
   app.use(express.static(path.join(__dirname, 'public')));
   app.get('*', (req, res) => {
     const assets = require('./assets');
-    const index = fs.readFileSync('./src/index.prod.tpl', 'utf8');
+    const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
     const compileIndex = template(index);
     // TODO: change data.html object so it contains reactRenderToString data
     const data = {};

@@ -25,7 +25,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     new HtmlWebpackPlugin({
-      template: path.join(__dirname, 'src', 'index.dev.tpl'),
+      template: path.join(__dirname, 'src', 'index.tpl.html'),
       inject: 'body',
       filename: 'index.html',
     }),
