@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
-import '../../styles/normalize.css';
-import '../../styles/app.scss';
+// import '../../styles/normalize.css';
+// import '../../styles/app.scss';
 
 const App = ({
   children,

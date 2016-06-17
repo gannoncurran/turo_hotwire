@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 /* eslint-disable no-console */
+require('babel-register');
 
 // Module dependencies.
-const app = require('./appServer.js');
+const app = require('./appServer');
 const debug = require('debug')('testapp:server');
 const http = require('http');
 

@@ -6,7 +6,7 @@ import Home from './components/home/Home';
 import Subpage from './components/subpage/Subpage';
 import NotFound from './components/notfound/NotFound';
 
-export default (
+const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
@@ -14,3 +14,5 @@ export default (
     <Route path="*" component={NotFound} />
   </Route>
 );
+
+export default routes;

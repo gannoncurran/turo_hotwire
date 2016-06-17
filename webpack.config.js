@@ -1,10 +1,13 @@
+/* eslint-disable no-console */
+
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 
-console.log('WEBPACKing FOR DEVELOPMENT\n'); // eslint-disable-line no-console
+console.log('WEBPACKing FOR DEVELOPMENT\n');
 
 module.exports = {
+  context: path.join(__dirname, 'src'),
   devtool: 'cheap-module-eval-source-map',
   entry: [
     'webpack/hot/only-dev-server',

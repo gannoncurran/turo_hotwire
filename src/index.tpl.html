@@ -9,11 +9,7 @@
   <% } %>
 </head>
 <body>
-  <div id="react-render-target">
-    <% if (typeof data !== 'undefined') { %>
-      <%= data.html %>
-    <% } %>
-  </div>
+  <div id="react-render-target"><% if (typeof data !== 'undefined') { %><%= data.html %><% } %></div>
   <% if (typeof assets !== 'undefined') { %>
     <script src="<%= assets.vendor.js %>"></script>
     <script async src="<%= assets.main.js %>" ></script>

@@ -1,17 +1,21 @@
 /* eslint-disable no-console, global-require, no-underscore-dangle */
-const fs = require('fs');
-const path = require('path');
-const express = require('express');
-const helmet = require('helmet');
-const favicon = require('serve-favicon');
-const logger = require('morgan');
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
-const template = require('lodash.template');
-const compression = require('compression');
+import fs from 'fs';
+import path from 'path';
+import express from 'express';
+import helmet from 'helmet';
+import favicon from 'serve-favicon';
+import logger from 'morgan';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import template from 'lodash.template';
+import compression from 'compression';
+
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import { RouterContext, createMemoryHistory, match } from 'react-router';
+import routes from './src/routes';
 
 const __PROD__ = process.env.NODE_ENV === 'production';
-console.log('PRODUCTION:', __PROD__);
 const app = express();
 
 const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
@@ -55,12 +59,21 @@ if (__PROD__) {
 }
 
 app.get('*', (req, res) => {
-  const assets = require('./assets');
-  // TODO: change data.html object so it contains reactRenderToString data
+  const history = createMemoryHistory(req.path);
   const data = {};
-  data.html = '<div>YES</div>';
-  const templateData = __PROD__ ? { data, assets } : { data };
-  res.send(compileIndex(templateData));
+  match({ routes, history }, (error, redirectLocation, renderProps) => {
+    if (error) {
+      res.status(500).send(error.message);
+    } else if (redirectLocation) {
+      res.redirect(302, redirectLocation.pathname + redirectLocation.search);
+    } else if (renderProps) {
+      data.html = renderToString(<RouterContext {...renderProps} />);
+      const templateData = __PROD__ ? { data, assets: require('./assets.json') } : { data };
+      res.send(compileIndex(templateData));
+    } else {
+      res.status(404).send('Saaaad. Not found');
+    }
+  });
 });
 
 // catch 404 and forward to error handler
