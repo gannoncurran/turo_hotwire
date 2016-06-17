@@ -71,7 +71,7 @@ app.get('*', (req, res) => {
       const templateData = __PROD__ ? { data, assets: require('./assets.json') } : { data };
       res.send(compileIndex(templateData));
     } else {
-      res.status(404).send('Saaaad. Not found');
+      res.status(404).send('Not found');
     }
   });
 });
