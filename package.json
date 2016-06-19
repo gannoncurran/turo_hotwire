@@ -65,6 +65,7 @@
     "jsdom": "^9.2.1",
     "json-loader": "^0.5.4",
     "mocha": "^2.5.3",
+    "multi-loader": "^0.1.0",
     "node-sass": "^3.7.0",
     "postcss-loader": "^0.9.1",
     "raw-loader": "^0.5.1",

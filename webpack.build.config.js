@@ -1,11 +1,13 @@
+/* eslint-disable no-console */
+
 const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const StatsPlugin = require('stats-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const AssetsPlugin = require('assets-webpack-plugin');
+const StatsPlugin = require('stats-webpack-plugin');
 
-console.log(  // eslint-disable-line no-console
+console.log(
   'WEBPACK BUILDING FOR PRODUCTION',
   '\nprocess.env.NODE_ENV =', process.env.NODE_ENV, '\n'
 );
@@ -28,7 +30,6 @@ module.exports = {
     publicPath: '/',
   },
   plugins: [
-    new ExtractTextPlugin('[name]-[hash].min.css'),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
@@ -48,11 +49,12 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
     }),
+    new ExtractTextPlugin('[name]-[hash].min.css'),
+    new AssetsPlugin({ filename: 'bundlemap.json' }),
     new StatsPlugin('webpack.stats.json', {
       source: false,
       modules: false,
     }),
-    new AssetsPlugin({ filename: 'assets.json' }),
   ],
   resolve: {
     extensions: [

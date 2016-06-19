@@ -2,7 +2,10 @@
 
 const path = require('path');
 const webpack = require('webpack');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
+const AssetsPlugin = require('assets-webpack-plugin');
+const multiLoader = require('multi-loader');
 
 console.log('WEBPACKing FOR DEVELOPMENT\n');
 
@@ -25,7 +28,10 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify('development'),
+      'process.env.IN_BUNDLE': JSON.stringify(true),
     }),
+    new ExtractTextPlugin('[name].min.css'),
+    new AssetsPlugin({ filename: 'bundlemap.json' }),
   ],
   resolve: {
     extensions: [
@@ -55,14 +61,26 @@ module.exports = {
           path.join(__dirname, 'src'),
         ],
       },
+      // For scss and css, we're using multiLoader to inline AND extract styles.
+      // Extracted css is linked in the head of server rendered html template
+      // then, when react renders on the client, <style> tags are injected into doc head
+      // and take precedence over linked. These injected styles then allow hot reloading.
+      // TODO: add method to remove <link>ed stylesheet after client renders <style>s into
+      // head to prevent conflicts with HMR removed classes that would still be in <link>
       {
         test: /\.scss?$/,
-        loader: 'style!raw!postcss!sass', // using !raw to prevent url refs from inlining.
+        loader: multiLoader(
+          'style!raw!postcss!sass', // using !raw to prevent url refs from inlining.
+          ExtractTextPlugin.extract(['css', 'postcss', 'sass']),
+        ),
         include: path.join(__dirname, 'src'),
       },
       {
         test: /\.css?$/,
-        loader: 'style!raw', // using !raw to prevent url refs from inlining.
+        loader: multiLoader(
+          'style!raw', // using !raw to prevent url refs from inlining.
+          ExtractTextPlugin.extract(['css']),
+        ),
         include: path.join(__dirname, 'src'),
       },
     ],

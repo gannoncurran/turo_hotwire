@@ -1,3 +1,4 @@
+
 /* eslint-disable no-console, global-require, no-underscore-dangle */
 import fs from 'fs';
 import path from 'path';
@@ -61,6 +62,8 @@ if (__PROD__) {
 app.get('*', (req, res) => {
   const history = createMemoryHistory(req.path);
   const data = {};
+  const assets = require('./bundlemap');
+
   match({ routes, history }, (error, redirectLocation, renderProps) => {
     if (error) {
       res.status(500).send(error.message);
@@ -68,8 +71,7 @@ app.get('*', (req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       data.html = renderToString(<RouterContext {...renderProps} />);
-      const templateData = __PROD__ ? { data, assets: require('./assets.json') } : { data };
-      res.send(compileIndex(templateData));
+      res.send(compileIndex({ data, assets }));
     } else {
       res.status(404).send('Not found');
     }
