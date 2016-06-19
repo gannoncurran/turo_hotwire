@@ -62,7 +62,8 @@ if (__PROD__) {
 app.get('*', (req, res) => {
   const history = createMemoryHistory(req.path);
   const data = {};
-  const assets = require('./bundlemap');
+  // const assets = require('./bundlemap');
+  const assets = JSON.parse(fs.readFileSync('./bundlemap.json', 'utf8'));
 
   match({ routes, history }, (error, redirectLocation, renderProps) => {
     if (error) {

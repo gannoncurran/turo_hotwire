@@ -30,7 +30,7 @@ module.exports = {
       'process.env.NODE_ENV': JSON.stringify('development'),
       'process.env.IN_BUNDLE': JSON.stringify(true),
     }),
-    new ExtractTextPlugin('[name].min.css'),
+    new ExtractTextPlugin('[name]-[contenthash].min.css'),
     new AssetsPlugin({ filename: 'bundlemap.json' }),
   ],
   resolve: {
