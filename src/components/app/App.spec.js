@@ -13,6 +13,7 @@ describe('<App />', () => {
 
   it('should render links to "Home" and "Subpage"', () => {
     const wrapper = shallow(<App children={[<div key={1} />]} />);
+    expect(wrapper.find('Link').length).to.equal(2);
     expect(wrapper.find('Link').at(0).contains('Home')).to.equal(true);
     expect(wrapper.find('Link').at(1).contains('Subpage')).to.equal(true);
   });
