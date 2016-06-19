@@ -37,6 +37,7 @@
     "helmet": "^2.1.1",
     "lodash.template": "^4.2.5",
     "morgan": "^1.7.0",
+    "react-helmet": "^3.1.0",
     "request": "^2.72.0",
     "serve-favicon": "^2.3.0",
     "webpack-isomorphic-tools": "^2.3.2"

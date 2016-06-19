@@ -16,6 +16,9 @@ import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
 import routes from './src/routes';
 
+import ReactHelmet from 'react-helmet';
+let rHCompiled;
+
 const __PROD__ = process.env.NODE_ENV === 'production';
 const app = express();
 
@@ -61,8 +64,8 @@ if (__PROD__) {
 
 app.get('*', (req, res) => {
   const history = createMemoryHistory(req.path);
+  const head = {}
   const data = {};
-  // const assets = require('./bundlemap');
   const assets = JSON.parse(fs.readFileSync('./bundlemap.json', 'utf8'));
 
   match({ routes, history }, (error, redirectLocation, renderProps) => {
@@ -72,7 +75,9 @@ app.get('*', (req, res) => {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
       data.html = renderToString(<RouterContext {...renderProps} />);
-      res.send(compileIndex({ data, assets }));
+      rHCompiled = ReactHelmet.rewind();
+      head.title = rHCompiled.title.toString();
+      res.send(compileIndex({ head, data, assets }));
     } else {
       res.status(404).send('Not found');
     }
