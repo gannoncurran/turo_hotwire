@@ -14,6 +14,7 @@ import compression from 'compression';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
+import routes from './src/routes';
 
 import ReactHelmet from 'react-helmet';
 let rHCompiled;
@@ -62,7 +63,6 @@ if (__PROD__) {
 }
 
 app.get('*', (req, res) => {
-  const routes = require('./src/routes').default;
   const history = createMemoryHistory(req.path);
   const head = {}
   const data = {};
