@@ -13,7 +13,6 @@ module.exports = {
   context: path.join(__dirname, 'src'),
   devtool: 'cheap-module-eval-source-map',
   entry: [
-    'webpack/hot/only-dev-server',
     'webpack-hot-middleware/client',
     path.join(__dirname, 'src', 'index.jsx'),
   ],
