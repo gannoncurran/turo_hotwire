@@ -31,6 +31,12 @@ class App extends Component {
         <ReactHelmet
           title="Home"
           titleTemplate="Universal Starter - %s"
+          meta={[
+            {"charset": "utf-8"},
+            {"name": "viewport", "content": "width=device-width, initial-scale=1"},
+            {"property": "og:title", "content": "Redux Universal Boilerplate"},
+            {"property": "og:description", "content": "A skeleton for starting Universal Express/React/Redux applications"},
+          ]}
         />
         <div className="logo" />
         <h1 className="headline">App</h1>

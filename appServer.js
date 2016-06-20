@@ -90,6 +90,7 @@ app.get('*', (req, res) => {
       data.html = renderToString(<RouterContext {...renderProps} />);
       rHCompiled = ReactHelmet.rewind();
       head.title = rHCompiled.title.toString();
+      head.meta = rHCompiled.meta.toString();
       res.send(compileIndex({ head, data, assets }));
     } else {
       res.status(404).send('Not found');
