@@ -14,7 +14,6 @@ import compression from 'compression';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
-import routes from './src/routes';
 
 import ReactHelmet from 'react-helmet';
 let rHCompiled;
@@ -41,6 +40,19 @@ if (__PROD__) {
 } else {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
+  const Watchpack = require('watchpack');
+
+  // watch for module changes, bust node require() cache so
+  // that SSR and HMR match between server restarts
+  const wp = new Watchpack({ aggregateTimeout: 200 });
+  wp.watch([], ['./src'], Date.now() - 10000);
+  wp.on('change', (filename) => {
+    const moduleIdent = path.join(__dirname, filename);
+    const routesIdent = require.resolve('./src/routes');
+    delete require.cache[moduleIdent];
+    delete require.cache[routesIdent];
+  });
+
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('./webpack.config.js');
@@ -63,6 +75,7 @@ if (__PROD__) {
 }
 
 app.get('*', (req, res) => {
+  const routes = require('./src/routes').default;
   const history = createMemoryHistory(req.path);
   const head = {}
   const data = {};
