@@ -18,6 +18,8 @@ import { RouterContext, createMemoryHistory, match } from 'react-router';
 import ReactHelmet from 'react-helmet';
 let rHCompiled;
 
+const __projectRoot = path.join(__dirname, '../..');
+
 const __PROD__ = process.env.NODE_ENV === 'production';
 const app = express();
 
@@ -25,18 +27,18 @@ const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
 const compileIndex = template(index);
 
 app.disable('x-powered-by');
-app.use(favicon(path.resolve(__dirname, '../..', 'assets', 'favicon.ico')));
+app.use(favicon(path.resolve(__projectRoot, 'assets', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger('dev'));
 app.use(helmet());
 app.use(compression());
-app.use(express.static(path.resolve(__dirname, '../..', 'assets')));
+app.use(express.static(path.resolve(__projectRoot, 'assets')));
 
 if (__PROD__) {
   console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
-  app.use(express.static(path.resolve(__dirname, '../..', 'public')));
+  app.use(express.static(path.resolve(__projectRoot, 'public')));
 } else {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
@@ -47,7 +49,7 @@ if (__PROD__) {
   const wp = new Watchpack({ aggregateTimeout: 200 });
   wp.watch([], ['./src'], Date.now() - 10000);
   wp.on('change', (filename) => {
-    const moduleIdent = path.resolve(__dirname, '../..', filename);
+    const moduleIdent = path.resolve(__projectRoot, filename);
     const routesIdent = require.resolve('../common/routes/routes.jsx');
     delete require.cache[moduleIdent];
     delete require.cache[routesIdent];
@@ -80,7 +82,7 @@ app.get('*', (req, res) => {
   const head = {};
   const data = {};
   const assets = JSON.parse(
-    fs.readFileSync(path.resolve(__dirname, '../..', 'bundlemap.json'), 'utf8')
+    fs.readFileSync(path.resolve(__projectRoot, 'bundlemap.json'), 'utf8')
   );
 
   match({ routes, history }, (error, redirectLocation, renderProps) => {
