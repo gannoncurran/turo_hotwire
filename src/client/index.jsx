@@ -1,12 +1,16 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
 import { Router, match, browserHistory } from 'react-router';
-import routes from './routes';
+import routes from '../common/routes/routes';
 import withScroll from 'scroll-behavior';
 const history = withScroll(browserHistory);
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
+
+// import { Provider } from 'react-redux';
+// import configureStore from '../common/store/configureStore';
 
 // TODO finish this redux work in progress
 // import { syncHistoryWithStore, routerReducer } from 'react-router-redux';

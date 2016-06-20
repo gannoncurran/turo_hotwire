@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import ReactHelmet from 'react-helmet';
@@ -20,7 +22,7 @@ class App extends Component {
       const mainRegex = /\/main-.*\.css/;
       Array.prototype.map.call(
         linkedStyles,
-        (link) => { if (mainRegex.test(link.href)) link.parentNode.removeChild(link) }
+        (link) => { if (mainRegex.test(link.href)) link.parentNode.removeChild(link); }
       );
     }
   }
@@ -32,10 +34,21 @@ class App extends Component {
           title="Home"
           titleTemplate="Universal Starter - %s"
           meta={[
-            {"charset": "utf-8"},
-            {"name": "viewport", "content": "width=device-width, initial-scale=1"},
-            {"property": "og:title", "content": "Redux Universal Boilerplate"},
-            {"property": "og:description", "content": "A skeleton for starting Universal Express/React/Redux applications"},
+            {
+              charset: 'utf-8',
+            },
+            {
+              name: 'viewport',
+              content: 'width=device-width, initial-scale=1',
+            },
+            {
+              property: 'og:title',
+              content: 'Redux Universal Boilerplate',
+            },
+            {
+              property: 'og:description',
+              content: 'A skeleton for starting Universal Express/React/Redux applications',
+            },
           ]}
         />
         <div className="logo" />

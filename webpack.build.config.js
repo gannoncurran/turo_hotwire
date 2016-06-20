@@ -16,7 +16,7 @@ module.exports = {
   devtool: false,
   entry: {
     main: [
-      path.join(__dirname, 'src', 'index.jsx'),
+      path.join(__dirname, 'src', 'client', 'index.jsx'),
     ],
     vendor: [
       'react',

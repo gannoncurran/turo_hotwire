@@ -6,7 +6,7 @@
     "type": "git",
     "url": "https://github.com/HelloElephant/express_webpack_react"
   },
-  "main": "index.jsx",
+  "main": "./src/client/index.jsx",
   "engines": {
     "node": "=4.4.3",
     "npm": "=2.15.1"
@@ -15,8 +15,8 @@
   "scripts": {
     "test": "mocha config/mocha/setup.js \"src/**/*.spec.js\" --reporter progress",
     "test:watch": "npm run test -- --watch --watch-extensions jsx",
-    "start": "node server.js",
-    "production": "npm run build && NODE_ENV=production node server.js",
+    "start": "node ./src/server/server.js",
+    "production": "npm run build && NODE_ENV=production node ./src/server/server.js",
     "build": "npm test && rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
   },
   "keywords": [

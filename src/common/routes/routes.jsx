@@ -1,10 +1,10 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './components/app/App';
-import Home from './components/home/Home';
-import Subpage from './components/subpage/Subpage';
-import NotFound from './components/notfound/NotFound';
+import App from '../components/app/App';
+import Home from '../components/home/Home';
+import Subpage from '../components/subpage/Subpage';
+import NotFound from '../components/notfound/NotFound';
 
 const routes = (
   <Route path="/" component={App}>

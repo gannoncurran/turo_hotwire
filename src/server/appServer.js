@@ -25,18 +25,18 @@ const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
 const compileIndex = template(index);
 
 app.disable('x-powered-by');
-app.use(favicon(path.join(__dirname, 'assets', 'favicon.ico')));
+app.use(favicon(path.resolve(__dirname, '../..', 'assets', 'favicon.ico')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(logger('dev'));
 app.use(helmet());
 app.use(compression());
-app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.resolve(__dirname, '../..', 'assets')));
 
 if (__PROD__) {
   console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
-  app.use(express.static(path.join(__dirname, 'public')));
+  app.use(express.static(path.resolve(__dirname, '../..', 'public')));
 } else {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
@@ -47,15 +47,15 @@ if (__PROD__) {
   const wp = new Watchpack({ aggregateTimeout: 200 });
   wp.watch([], ['./src'], Date.now() - 10000);
   wp.on('change', (filename) => {
-    const moduleIdent = path.join(__dirname, filename);
-    const routesIdent = require.resolve('./src/routes');
+    const moduleIdent = path.resolve(__dirname, '../..', filename);
+    const routesIdent = require.resolve('../common/routes/routes.jsx');
     delete require.cache[moduleIdent];
     delete require.cache[routesIdent];
   });
 
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
-  const webpackConfig = require('./webpack.config.js');
+  const webpackConfig = require('../../webpack.config.js');
   const webpackDevMiddlewareOptions = {
     publicPath: webpackConfig.output.publicPath,
     contentBase: 'src',
@@ -75,11 +75,13 @@ if (__PROD__) {
 }
 
 app.get('*', (req, res) => {
-  const routes = require('./src/routes').default;
+  const routes = require('../common/routes/routes.jsx').default;
   const history = createMemoryHistory(req.path);
-  const head = {}
+  const head = {};
   const data = {};
-  const assets = JSON.parse(fs.readFileSync('./bundlemap.json', 'utf8'));
+  const assets = JSON.parse(
+    fs.readFileSync(path.resolve(__dirname, '../..', 'bundlemap.json'), 'utf8')
+  );
 
   match({ routes, history }, (error, redirectLocation, renderProps) => {
     if (error) {
