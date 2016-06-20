@@ -3,9 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Express Webpack React Starter</title>
+  <% if (head && head.title) { %>
+    <%= head.title %>
+  <% } %>
+  <% if (assets && assets.main && assets.main.css) { %>
+    <link rel="stylesheet" href="<%= assets.main.css %>">
+  <% } %>
 </head>
 <body>
-  <div id="react-render-target"></div>
+  <div id="react-render-target"><% if (typeof data !== 'undefined') { %><%= data.html %><% } %></div>
+  <% if (assets && assets.vendor && assets.vendor.js) { %>
+    <script src="<%= assets.vendor.js %>"></script>
+  <% } %>
+  <% if (assets && assets.main && assets.main.js) { %>
+    <script async src="<%= assets.main.js %>" ></script>
+  <% } %>
 </body>
 </html>
