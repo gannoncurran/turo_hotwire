@@ -64,8 +64,6 @@ module.exports = {
       // Extracted css is linked in the head of server rendered html template
       // then, when react renders on the client, <style> tags are injected into doc head
       // and take precedence over linked. These injected styles then allow hot reloading.
-      // TODO: add method to remove <link>ed stylesheet after client renders <style>s into
-      // head to prevent conflicts with HMR removed classes that would still be in <link>
       {
         test: /\.scss?$/,
         loader: multiLoader(
