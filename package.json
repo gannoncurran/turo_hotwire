@@ -39,8 +39,7 @@
     "morgan": "^1.7.0",
     "react-helmet": "^3.1.0",
     "request": "^2.72.0",
-    "serve-favicon": "^2.3.0",
-    "webpack-isomorphic-tools": "^2.3.2"
+    "serve-favicon": "^2.3.0"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
