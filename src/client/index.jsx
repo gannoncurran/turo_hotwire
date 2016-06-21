@@ -1,6 +1,7 @@
+/* eslint-disable no-underscore-dangle */
 import 'babel-polyfill';
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
 import { Router, match, browserHistory } from 'react-router';
 import routes from '../common/routes/routes';
@@ -9,41 +10,26 @@ const history = withScroll(browserHistory);
 const { pathname, search, hash } = window.location;
 const location = `${pathname}${search}${hash}`;
 
-// import { Provider } from 'react-redux';
-// import configureStore from '../common/store/configureStore';
-
-// TODO finish this redux work in progress
-// import { syncHistoryWithStore, routerReducer } from 'react-router-redux';
-// import { createStore, combineReducers } from 'redux';
-// import { configureStore } from '../common/store'
-// const initialState = window.INITIAL_STATE || {}
-// const store = configureStore(initialState)
+import { Provider } from 'react-redux';
+import configureStore from '../common/store/configureStore';
+const preloadedState = window.__PRELOADED_STATE__;
+const store = configureStore(preloadedState);
 
 if (module.hot) {
   module.hot.accept();
 }
 
 match({ routes, location }, () => {
-  ReactDOM.render(
-    <Router
-      routes={routes}
-      history={history}
-      key={Math.random()}
-    />,
+  render(
+    <Provider
+      store={store}
+    >
+      <Router
+        routes={routes}
+        history={history}
+        key={Math.random()}
+      />
+    </Provider>,
     document.getElementById('react-render-target')
   );
 });
-
-// TODO finish this redux work in progress
-// match({ routes, location }, () => {
-//   ReactDOM.render(
-//     <Provider store={store}>
-//       <Router
-//         routes={routes}
-//         history={history}
-//         key={Math.random()}
-//       />
-//     </Provider>,
-//     document.getElementById('react-render-target')
-//   );
-// });

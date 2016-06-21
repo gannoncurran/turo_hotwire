@@ -13,6 +13,9 @@
 </head>
 <body>
   <div id="react-render-target"><% if (typeof data !== 'undefined') { %><%= data.html %><% } %></div>
+  <% if (preloadedState) { %>
+    <script>window.__PRELOADED_STATE__ = <%= preloadedState %>;</script>
+  <% } %>
   <% if (assets && assets.vendor && assets.vendor.js) { %>
     <script src="<%= assets.vendor.js %>"></script>
   <% } %>

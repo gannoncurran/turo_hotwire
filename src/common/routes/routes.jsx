@@ -4,6 +4,7 @@ import { Route, IndexRoute } from 'react-router';
 import App from '../components/app/App';
 import Home from '../components/home/Home';
 import Subpage from '../components/subpage/Subpage';
+import Counter from '../components/counter/Counter_wrap';
 import NotFound from '../components/notfound/NotFound';
 
 const routes = (
@@ -11,6 +12,7 @@ const routes = (
     <IndexRoute component={Home} />
     <Route path="home" component={Home} />
     <Route path="subpage" component={Subpage} />
+    <Route path="counter" component={Counter} />
     <Route path="*" component={NotFound} />
   </Route>
 );

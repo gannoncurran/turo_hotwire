@@ -15,6 +15,9 @@ import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
 
+import { Provider } from 'react-redux';
+import configureStore from '../common/store/configureStore';
+
 import ReactHelmet from 'react-helmet';
 let rHCompiled;
 
@@ -25,6 +28,8 @@ const app = express();
 
 const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
 const compileIndex = template(index);
+
+let firstLoad = true;
 
 app.disable('x-powered-by');
 app.use(favicon(path.resolve(__projectRoot, 'assets', 'favicon.ico')));
@@ -42,19 +47,6 @@ if (__PROD__) {
 } else {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
-  const Watchpack = require('watchpack');
-
-  // watch for module changes, bust node require() cache so
-  // that SSR and HMR match between server restarts
-  const wp = new Watchpack({ aggregateTimeout: 200 });
-  wp.watch([], ['./src'], Date.now() - 10000);
-  wp.on('change', (filename) => {
-    const moduleIdent = path.resolve(__projectRoot, filename);
-    const routesIdent = require.resolve('../common/routes/routes.jsx');
-    delete require.cache[moduleIdent];
-    delete require.cache[routesIdent];
-  });
-
   const webpackDevMiddleware = require('webpack-dev-middleware');
   const webpackHotMiddleware = require('webpack-hot-middleware');
   const webpackConfig = require('../../webpack.config.js');
@@ -77,10 +69,20 @@ if (__PROD__) {
 }
 
 app.get('*', (req, res) => {
-  const routes = require('../common/routes/routes.jsx').default;
+  if (!__PROD__ && !firstLoad) {
+    const modIDs = Object.keys(require.cache);
+    modIDs.map((id) => {
+      if (id.indexOf('/src/') !== -1) delete require.cache[id];
+      return false;
+    });
+  }
+  firstLoad = false;
+  const store = configureStore({ counter: 20 });
+  const routes = require('../common/routes/routes').default;
   const history = createMemoryHistory(req.path);
   const head = {};
   const data = {};
+  const preloadedState = JSON.stringify(store.getState());
   const assets = JSON.parse(
     fs.readFileSync(path.resolve(__projectRoot, 'bundlemap.json'), 'utf8')
   );
@@ -91,11 +93,15 @@ app.get('*', (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      data.html = renderToString(<RouterContext {...renderProps} />);
+      data.html = renderToString(
+        <Provider store={store}>
+          <RouterContext {...renderProps} />
+        </Provider>
+      );
       rHCompiled = ReactHelmet.rewind();
       head.title = rHCompiled.title.toString();
       head.meta = rHCompiled.meta.toString();
-      res.send(compileIndex({ head, data, assets }));
+      res.send(compileIndex({ head, data, assets, preloadedState }));
     } else {
       res.status(404).send('Not found');
     }

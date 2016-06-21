@@ -34,7 +34,7 @@ module.exports = {
     new webpack.optimize.AggressiveMergingPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',
-      filename: 'vendor.js',
+      filename: '[name]-[hash].min.js',
       minChunks: 2,
     }),
     new webpack.optimize.DedupePlugin(),
