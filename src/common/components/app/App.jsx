@@ -1,5 +1,4 @@
 /* eslint-disable global-require */
-
 import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import ReactHelmet from 'react-helmet';

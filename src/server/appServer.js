@@ -3,6 +3,7 @@
 import fs from 'fs';
 import path from 'path';
 import express from 'express';
+import request from 'request';
 import helmet from 'helmet';
 import favicon from 'serve-favicon';
 import logger from 'morgan';
@@ -68,6 +69,11 @@ if (__PROD__) {
   app.use(webpackHotMiddleware(compiler, { log: console.log }));
 }
 
+app.get('/api/v0/*', (req, res) => {
+  const routeSegment = req.path.split('/api/v0/').pop();
+  req.pipe(request.get(`http://localhost:8080/${routeSegment}`)).pipe(res);
+});
+
 app.get('*', (req, res) => {
   if (!__PROD__ && !firstLoad) {
     console.log('DEVELOPMENT: Recompiling source for server-side render.');
@@ -79,7 +85,7 @@ app.get('*', (req, res) => {
   }
   firstLoad = false;
   const store = configureStore({ counter: 20 });
-  const routes = require('../common/routes/routes').default;
+  const routes = require('../common/routes/root').default;
   const history = createMemoryHistory(req.path);
   const head = {};
   const data = {};
