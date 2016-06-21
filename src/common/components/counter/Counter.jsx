@@ -8,7 +8,7 @@ const Counter = ({
   counter,
 }) => (
   <p>
-    Clicked TI: {counter} times
+    Clicked: {counter} times
     {' '}
     <button onClick={increment}>+</button>
     {' '}

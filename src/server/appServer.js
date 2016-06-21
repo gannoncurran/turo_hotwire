@@ -70,6 +70,7 @@ if (__PROD__) {
 
 app.get('*', (req, res) => {
   if (!__PROD__ && !firstLoad) {
+    console.log('DEVELOPMENT: Recompiling source for server-side render.');
     const modIDs = Object.keys(require.cache);
     modIDs.map((id) => {
       if (id.indexOf('/src/') !== -1) delete require.cache[id];
