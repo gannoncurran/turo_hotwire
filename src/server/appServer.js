@@ -74,6 +74,11 @@ app.get('/api/v0/*', (req, res) => {
   req.pipe(request.get(`http://localhost:8080/${routeSegment}`)).pipe(res);
 });
 
+app.post('/api/v0/*', (req, res) => {
+  const routeSegment = req.path.split('/api/v0/').pop();
+  req.pipe(request.post(`http://localhost:8080/${routeSegment}`)).pipe(res);
+});
+
 app.get('*', (req, res) => {
   if (!__PROD__ && !firstLoad) {
     console.log('DEVELOPMENT: Recompiling source for server-side render.');

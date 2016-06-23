@@ -16,14 +16,6 @@ const location = `${pathname}${search}${hash}`;
 
 import { Provider } from 'react-redux';
 import store from '../common/store';
-// import configureStore from '../common/store/configureStore';
-
-// if (!window.__STORE__) {
-//   window.__STORE__ = configureStore(window.__PRELOADED_STATE__);
-// }
-//
-// const store = window.__STORE__;
-
 
 match({ routes, location }, () => {
   render(
