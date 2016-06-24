@@ -15,6 +15,7 @@ import compression from 'compression';
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
+import { trigger } from 'redial';
 
 import { Provider } from 'react-redux';
 import configureStore from '../common/store/configureStore';
@@ -80,6 +81,7 @@ app.post('/api/v0/*', (req, res) => {
 });
 
 app.get('*', (req, res) => {
+  // bust node's require.cache while in development to allow rendering of updated modules
   if (!__PROD__ && !firstLoad) {
     console.log('DEVELOPMENT: Recompiling source for server-side render.');
     const modIDs = Object.keys(require.cache);
@@ -89,12 +91,13 @@ app.get('*', (req, res) => {
     });
   }
   firstLoad = false;
-  const store = configureStore({ counter: 20 });
+  // require routes here to pull in updated modules after cache bust above
   const routes = require('../common/routes/root').default;
+  const store = configureStore();
+  const { dispatch, getState } = store;
   const history = createMemoryHistory(req.path);
   const head = {};
   const data = {};
-  const preloadedState = JSON.stringify(store.getState());
   const assets = JSON.parse(
     fs.readFileSync(path.resolve(__projectRoot, 'bundlemap.json'), 'utf8')
   );
@@ -105,15 +108,31 @@ app.get('*', (req, res) => {
     } else if (redirectLocation) {
       res.redirect(302, redirectLocation.pathname + redirectLocation.search);
     } else if (renderProps) {
-      data.html = renderToString(
-        <Provider store={store}>
-          <RouterContext {...renderProps} />
-        </Provider>
-      );
-      rHCompiled = ReactHelmet.rewind();
-      head.title = rHCompiled.title.toString();
-      head.meta = rHCompiled.meta.toString();
-      res.send(compileIndex({ head, data, assets, preloadedState }));
+      const { components } = renderProps;
+      const locals = {
+        path: renderProps.location.pathname,
+        query: renderProps.location.query,
+        params: renderProps.params,
+        dispatch,
+      };
+      trigger('fetch', components, locals)
+        .then(() => {
+          data.html = renderToString(
+            <Provider store={store}>
+              <RouterContext {...renderProps} />
+            </Provider>
+          );
+          rHCompiled = ReactHelmet.rewind();
+          head.title = rHCompiled.title.toString();
+          head.meta = rHCompiled.meta.toString();
+          res.send(compileIndex({
+            head,
+            data,
+            assets,
+            preloadedState: JSON.stringify(getState()),
+          }));
+        })
+        .catch(console.log.bind(console));
     } else {
       res.status(404).send('Not found');
     }

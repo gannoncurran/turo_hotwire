@@ -1,13 +1,16 @@
 /* eslint-disable global-require */
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import axios from 'axios';
 import rootReducer from '../reducers';
 
-const configureStore = (preloadedState) => {
+const configureStore = (initialState) => {
   const store = createStore(
     rootReducer,
-    preloadedState,
-    applyMiddleware(thunk)
+    initialState,
+    applyMiddleware(
+      thunk.withExtraArgument({ axios })
+    )
   );
 
   if (module.hot) {
@@ -17,19 +20,7 @@ const configureStore = (preloadedState) => {
       store.replaceReducer(nextRootReducer);
     });
   }
-  // if (process.env.IN_BUNDLE) {
-  //   console.log('============================================================');
-  //   console.log('============================================================');
-  //   console.log('WEBPACK BUNDLE RETURNING STORE FROM CONFIGURE STORE FUNCTION');
-  //   console.log('============================================================');
-  //   console.log('============================================================');
-  // } else {
-  //   console.log('============================================================');
-  //   console.log('============================================================');
-  //   console.log('SSR RETURNING STORE FROM CONFIGURE STORE FUNCTION');
-  //   console.log('============================================================');
-  //   console.log('============================================================');
-  // }
+
   return store;
 };
 

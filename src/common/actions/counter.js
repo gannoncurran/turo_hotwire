@@ -1,6 +1,4 @@
-export const SET_COUNTER = 'SET_COUNTER';
-export const INCREMENT_COUNTER = 'INCREMENT_COUNTER';
-export const DECREMENT_COUNTER = 'DECREMENT_COUNTER';
+import { SET_COUNTER, INCREMENT_COUNTER, DECREMENT_COUNTER } from '../constants';
 
 export function set(value) {
   return {
