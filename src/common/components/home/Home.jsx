@@ -3,9 +3,7 @@ import ReactHelmet from 'react-helmet';
 
 const Home = () => (
   <div>
-    <ReactHelmet
-      title="Home"
-    />
+    <ReactHelmet title="Home" />
     <div className="subhead">Home</div>
   </div>
 );

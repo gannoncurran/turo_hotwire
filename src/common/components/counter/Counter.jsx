@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactHelmet from 'react-helmet';
 
 const Counter = ({
   increment,
@@ -7,17 +8,20 @@ const Counter = ({
   decrement,
   counter,
 }) => (
-  <p>
-    Clicked: {counter} times
-    {' '}
-    <button onClick={increment}>+</button>
-    {' '}
-    <button onClick={decrement}>-</button>
-    {' '}
-    <button onClick={incrementIfOdd}>Increment if odd</button>
-    {' '}
-    <button onClick={() => incrementAsync()}>Increment async</button>
-  </p>
+  <div>
+    <ReactHelmet title="Counter" />
+    <p>
+      Clicked: {counter} times
+      {' '}
+      <button onClick={increment}>+</button>
+      {' '}
+      <button onClick={decrement}>-</button>
+      {' '}
+      <button onClick={incrementIfOdd}>Increment if odd</button>
+      {' '}
+      <button onClick={() => incrementAsync()}>Increment async</button>
+    </p>
+  </div>
 );
 
 Counter.propTypes = {

@@ -3,7 +3,7 @@ import React,
 { PropTypes } from 'react';
 import { loadPeople } from '../../actions/people';
 import { connect } from 'react-redux';
-import Helmet from 'react-helmet';
+import ReactHelmet from 'react-helmet';
 import Person from './Person';
 
 const redial = {
@@ -16,7 +16,7 @@ const mapStateToProps = state => ({
 
 const People = ({ people }) => (
   <div>
-    <Helmet title="People" />
+    <ReactHelmet title="People" />
     {people.error &&
       <div
         style={{

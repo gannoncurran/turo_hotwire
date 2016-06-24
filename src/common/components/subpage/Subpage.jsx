@@ -3,9 +3,7 @@ import ReactHelmet from 'react-helmet';
 
 const Subpage = () => (
   <div>
-    <ReactHelmet
-      title="Subpage"
-    />
+    <ReactHelmet title="Subpage" />
     <div className="subhead">Subpage</div>
   </div>
 );
