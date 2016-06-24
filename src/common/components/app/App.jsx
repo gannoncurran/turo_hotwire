@@ -3,9 +3,9 @@ import React, { PropTypes, Component } from 'react';
 import { Link } from 'react-router';
 import ReactHelmet from 'react-helmet';
 
-// When appServer.js requires './src/routes' for react-router "match" clientside render,
+// When appServer.js requires './src/routes' for react-router "match" server-side render,
 // eventually the require tree will present these css and scss files, and
-// everything will blow up — so, we'll only load these during webpack bundles.
+// node will blow up — so, we'll only load these during webpack bundles.
 // Webpack knows what to do with them.
 if (process.env.IN_BUNDLE) {
   require('../../styles/normalize.css');
