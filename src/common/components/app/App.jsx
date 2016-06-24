@@ -14,8 +14,9 @@ if (process.env.IN_BUNDLE) {
 
 class App extends Component {
   componentDidMount() {
-    // Remove original <link>ed styles from header to prevent conflicts with HMR compatible
-    // <style>s that have now been injected by clientside webpack js bundle.
+    // Remove original <link>ed styles from header while in development mode
+    // to prevent conflicts with HMR compatible <style>s that have now been
+    // injected by clientside webpack js bundle.
     if (process.env.NODE_ENV === 'development') {
       const linkedStyles = document.getElementsByTagName('link');
       const mainRegex = /\/main-.*\.css/;
