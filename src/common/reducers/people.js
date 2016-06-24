@@ -6,7 +6,7 @@ const people = (
     data: [],
     lastFetched: null,
     isLoading: false,
-    error: null,
+    error: false,
   },
   action
 ) => {
@@ -14,16 +14,19 @@ const people = (
     case LOAD_PEOPLE_REQUEST:
       return update(state, {
         isLoading: { $set: true },
+        error: { $set: false },
       });
     case LOAD_PEOPLE_SUCCESS:
       return update(state, {
         data: { $set: action.payload },
         lastFetched: { $set: action.meta.lastFetched },
         isLoading: { $set: false },
+        error: { $set: false },
       });
     case LOAD_PEOPLE_FAILURE:
       return update(state, {
-        error: { $set: action.payload },
+        isLoading: { $set: false },
+        error: { $set: true },
       });
     default:
       return state;

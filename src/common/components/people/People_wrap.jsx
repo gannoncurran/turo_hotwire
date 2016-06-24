@@ -1,5 +1,6 @@
 import { provideHooks } from 'redial';
-import React, { PropTypes } from 'react';
+import React,
+{ PropTypes } from 'react';
 import { loadPeople } from '../../actions/people';
 import { connect } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -16,6 +17,25 @@ const mapStateToProps = state => ({
 const People = ({ people }) => (
   <div>
     <Helmet title="People" />
+    {people.error &&
+      <div
+        style={{
+          borderRadius: '5px',
+          margin: '0',
+          padding: '20px',
+          border: '1px solid red',
+          backgroundColor: 'pink',
+        }}
+      >
+        <p
+          style={{
+            margin: '0',
+          }}
+        >
+          Something went wrong. Try again later.
+        </p>
+      </div>
+    }
     {people.isLoading &&
       <div>
         <h2>Loading....</h2>
