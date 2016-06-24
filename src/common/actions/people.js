@@ -7,7 +7,6 @@ export function loadPeople() {
     getState,
     { axios }
   ) => {
-    console.log('DISPATCHING LOAD PEOPLE REQUEST');
     dispatch({ type: LOAD_PEOPLE_REQUEST });
     return axios.get('http://localhost:3000/api/v0/people')
       .then(res => {
