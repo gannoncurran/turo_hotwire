@@ -21,7 +21,7 @@ const People = ({ people }) => (
       <div
         style={{
           borderRadius: '5px',
-          margin: '0',
+          margin: '0px',
           padding: '20px',
           border: '1px solid red',
           backgroundColor: 'pink',
@@ -48,7 +48,7 @@ const People = ({ people }) => (
           firstName={person.firstName}
           lastName={person.lastName}
           email={person.email}
-          counter={person.counter.toString()}
+          counter={person.counter}
         />
       ))
     }
