@@ -1,5 +1,6 @@
-/* eslint-disable no-console */
+/* eslint-disable no-console, strict */
 // v0.1
+'use strict';
 const express = require('express');
 const fs = require('fs');
 const path = require('path');
@@ -31,18 +32,20 @@ app.get('/people', (req, res) => {
 });
 
 app.post('/person/:id/counter/:value', (req, res) => {
+  let updated;
   const fakeData = JSON.parse(fs.readFileSync(path.resolve(__dirname, 'data', 'people.json')));
   const updatedPeople = fakeData.people.map((person) => {
     if (person.id.toString() === req.params.id) {
       const updatedPerson = person;
-      updatedPerson.counter = req.params.value;
+      updatedPerson.counter = parseInt(req.params.value, 10);
+      updated = updatedPerson;
       return updatedPerson;
     }
     return person;
   });
   fakeData.people = updatedPeople;
   fs.writeFileSync(path.resolve(__dirname, 'data', 'people.json'), JSON.stringify(fakeData));
-  res.json({ message: 'post was successful', id: req.params.id, value: req.params.value });
+  res.json(updated);
   res.end();
 });
 
