@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import InlineCounter from './InlineCounter';
 
 const Person = ({
   firstName,
@@ -10,7 +9,7 @@ const Person = ({
   <div style={{ borderBottom: '1px solid #ddd' }}>
     <p>{firstName} {lastName}</p>
     <p>Email: {email}</p>
-    <InlineCounter counterValue={counter} />
+    <p>Counter: {counter}</p>
   </div>
 );
 
