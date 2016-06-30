@@ -1,7 +1,7 @@
 import { provideHooks } from 'redial';
 import React,
 { PropTypes } from 'react';
-import { loadPeople } from '../../actions/people';
+import { loadPeople, incrementCounter, decrementCounter } from '../../actions/people';
 import { connect } from 'react-redux';
 import ReactHelmet from 'react-helmet';
 import Person from './Person';
@@ -14,7 +14,22 @@ const mapStateToProps = state => ({
   people: state.people,
 });
 
-const People = ({ people }) => (
+const mapDispatchToProps = (dispatch) => ({
+  handleIncrement: (id) => () => {
+    console.log('increment counter id:', id);
+    dispatch(incrementCounter(id));
+  },
+  handleDecrement: (id) => () => {
+    console.log('decrement counter id:', id);
+    dispatch(decrementCounter(id));
+  },
+});
+
+const People = ({
+  people,
+  handleIncrement,
+  handleDecrement,
+}) => (
   <div>
     <ReactHelmet title="People" />
     {people.error &&
@@ -29,7 +44,7 @@ const People = ({ people }) => (
       >
         <p
           style={{
-            margin: '0',
+            margin: '0px',
           }}
         >
           Something went wrong. Try again later.
@@ -44,11 +59,14 @@ const People = ({ people }) => (
     {!people.isLoading &&
       people.data.map((person) => (
         <Person
-          key={person.id}
-          firstName={person.firstName}
-          lastName={person.lastName}
-          email={person.email}
-          counter={person.counter}
+          id={person.data.id}
+          key={person.data.id}
+          firstName={person.data.firstName}
+          lastName={person.data.lastName}
+          email={person.data.email}
+          counter={person.data.counter}
+          handleIncrement={handleIncrement}
+          handleDecrement={handleDecrement}
         />
       ))
     }
@@ -57,6 +75,8 @@ const People = ({ people }) => (
 
 People.propTypes = {
   people: PropTypes.object.isRequired,
+  handleIncrement: PropTypes.func,
+  handleDecrement: PropTypes.func,
 };
 
-export default provideHooks(redial)(connect(mapStateToProps)(People));
+export default provideHooks(redial)(connect(mapStateToProps, mapDispatchToProps)(People));

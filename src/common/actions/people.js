@@ -1,5 +1,14 @@
 /* eslint-disable no-console */
-import { LOAD_PEOPLE_REQUEST, LOAD_PEOPLE_SUCCESS, LOAD_PEOPLE_FAILURE } from '../constants';
+import {
+  LOAD_PEOPLE_REQUEST,
+  LOAD_PEOPLE_SUCCESS,
+  LOAD_PEOPLE_FAILURE,
+  INCREMENT_COUNTER,
+  DECREMENT_COUNTER,
+  // UPDATE_PERSON_REQUEST,
+  // UPDATE_PERSON_SUCCESS,
+  // UPDATE_PERSON_FAILURE,
+} from '../constants';
 
 export function loadPeople() {
   return (
@@ -26,5 +35,19 @@ export function loadPeople() {
           error: true,
         });
       });
+  };
+}
+
+export function incrementCounter(personId) {
+  return {
+    type: INCREMENT_COUNTER,
+    personId,
+  };
+}
+
+export function decrementCounter(personId) {
+  return {
+    type: DECREMENT_COUNTER,
+    personId,
   };
 }

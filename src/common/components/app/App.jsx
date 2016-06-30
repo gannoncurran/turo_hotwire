@@ -56,7 +56,6 @@ class App extends Component {
         <nav className="nav">
           <Link className="nav__item" to={'/home'}>Home</Link>
           <Link className="nav__item" to={'/subpage'}>Subpage</Link>
-          <Link className="nav__item" to={'/counter'}>Counter</Link>
           <Link className="nav__item" to={'/people'}>People</Link>
         </nav>
         {this.props.children}

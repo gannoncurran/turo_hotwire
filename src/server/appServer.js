@@ -82,19 +82,6 @@ app.get('/api/v0/*', (req, res) => {
   ).pipe(res);
 });
 
-// function doQuery(){
-//     var r = request(url)
-//     r.pause()
-//     r.on('response', function (resp) {
-//        if(resp.statusCode === 200){
-//            r.pipe(new WritableStream()) //pipe to where you want it to go
-//            r.resume()
-//        }else{
-//            setTimeout(doQuery,1000)
-//        }
-//     })
-// }
-
 app.post('/api/v0/*', (req, res) => {
   const routeSegment = req.path.split('/api/v0/').pop();
   req.pipe(request.post(`http://localhost:8080/${routeSegment}`)).pipe(res);
