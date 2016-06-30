@@ -2,6 +2,7 @@
 
 $gray-9: #999;
 $gray-6: #666;
+$yellow: #ff0;
 
 .container {
   margin: 40px;
@@ -36,4 +37,14 @@ $gray-6: #666;
     font-size: 12px;
     padding-right: 10px;
   }
+}
+
+.synced {
+  background-color: transparent;
+  transition: background-color .5s ease;
+}
+
+.updating {
+  background-color: $yellow;
+  transition: background-color 0s ease;
 }

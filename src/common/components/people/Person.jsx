@@ -8,8 +8,14 @@ const Person = ({
   counter,
   handleIncrement,
   handleDecrement,
+  isUpdating,
 }) => (
-  <div style={{ borderBottom: '1px solid #ddd' }}>
+  <div
+    style={{
+      borderBottom: '1px solid #ddd',
+    }}
+    className={isUpdating ? 'updating' : 'synced'}
+  >
     <p>{firstName} {lastName}</p>
     <p>Email: {email}</p>
     <p>
@@ -26,8 +32,9 @@ Person.propTypes = {
   lastName: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
   counter: PropTypes.number.isRequired,
-  handleIncrement: PropTypes.func,
-  handleDecrement: PropTypes.func,
+  handleIncrement: PropTypes.func.isRequired,
+  handleDecrement: PropTypes.func.isRequired,
+  isUpdating: PropTypes.bool.isRequired,
 };
 
 export default Person;

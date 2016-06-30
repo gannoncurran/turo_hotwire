@@ -52,6 +52,7 @@ export function updatePerson(person) {
       .then(res => {
         dispatch({
           type: UPDATE_PERSON_SUCCESS,
+          personId: person.id,
           payload: res.data,
           meta: {
             lastFetched: Date.now(),
@@ -62,6 +63,7 @@ export function updatePerson(person) {
         console.error(`Error in reducer that handles ${UPDATE_PERSON_SUCCESS}: `, error);
         dispatch({
           type: UPDATE_PERSON_FAILURE,
+          personId: person.id,
           payload: error,
           error: true,
         });

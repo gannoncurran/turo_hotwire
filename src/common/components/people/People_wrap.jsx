@@ -65,6 +65,7 @@ const People = ({
           counter={person.data.counter}
           handleIncrement={handleIncrement}
           handleDecrement={handleDecrement}
+          isUpdating={person.isUpdating}
         />
       ))
     }
