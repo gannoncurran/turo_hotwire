@@ -16,11 +16,9 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = (dispatch) => ({
   handleIncrement: (id) => () => {
-    console.log('increment counter id:', id);
     dispatch(incrementCounter(id));
   },
   handleDecrement: (id) => () => {
-    console.log('decrement counter id:', id);
     dispatch(decrementCounter(id));
   },
 });

@@ -51,11 +51,22 @@ const person = (
         },
       };
     case UPDATE_PERSON_REQUEST:
-      return state;
+      return update(state, {
+        isUpdating: { $set: true },
+        error: { $set: false },
+      });
     case UPDATE_PERSON_SUCCESS:
-      return state;
+      return update(state, {
+        data: { $set: action.payload },
+        lastUpdated: { $set: action.meta.lastFetched },
+        isUpdating: { $set: false },
+        error: { $set: false },
+      });
     case UPDATE_PERSON_FAILURE:
-      return state;
+      return update(state, {
+        isUpdating: { $set: false },
+        error: { $set: true },
+      });
     default:
       return state;
   }
