@@ -41,11 +41,19 @@ app.use(cookieParser());
 app.use(logger('dev'));
 app.use(helmet());
 app.use(compression());
-app.use(express.static(path.resolve(__projectRoot, 'assets')));
+
+console.log('PRODUCTION: Serving static files from assets/');
+app.use(express.static(
+  path.resolve(__projectRoot, 'assets'),
+  { maxAge: 365 * 24 * 60 * 60 * 1000 }
+));
 
 if (__PROD__) {
-  console.log('PRODUCTION: Serving static files from assets/ and built files from public/');
-  app.use(express.static(path.resolve(__projectRoot, 'public')));
+  console.log('PRODUCTION: Serving built files from public/');
+  app.use(express.static(
+    path.resolve(__projectRoot, 'public'),
+    { maxAge: 365 * 24 * 60 * 60 * 1000 }
+  ));
 } else {
   console.log('DEVELOPMENT: Serving with WebPack Middleware');
   const webpack = require('webpack');
@@ -84,7 +92,14 @@ app.get('/api/v0/*', (req, res) => {
 
 app.post('/api/v0/*', (req, res) => {
   const routeSegment = req.path.split('/api/v0/').pop();
-  req.pipe(request.post(`http://localhost:8080/${routeSegment}`)).pipe(res);
+  req.pipe(
+    request
+      .post(`http://localhost:8080/${routeSegment}`)
+      .on('error', (error) => {
+        console.log('Server Error', error);
+        res.status(500).send(error.message);
+      })
+  ).pipe(res);
 });
 
 app.get('*', (req, res) => {

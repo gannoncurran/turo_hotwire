@@ -66,6 +66,7 @@ const People = ({
           handleIncrement={handleIncrement}
           handleDecrement={handleDecrement}
           isUpdating={person.isUpdating}
+          error={person.error}
         />
       ))
     }

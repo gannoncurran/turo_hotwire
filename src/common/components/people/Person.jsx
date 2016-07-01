@@ -9,6 +9,7 @@ const Person = ({
   handleIncrement,
   handleDecrement,
   isUpdating,
+  error,
 }) => (
   <div
     style={{
@@ -22,6 +23,16 @@ const Person = ({
       Counter: {counter}&nbsp;&nbsp;&nbsp;&nbsp;
       <button onClick={handleIncrement(id)}>+</button>
       <button onClick={handleDecrement(id)}>-</button>
+      {error &&
+        <span
+          style={{
+            paddingLeft: '10px',
+            color: 'red',
+          }}
+        >
+          Could not sync with server.
+        </span>
+      }
     </p>
   </div>
 );
@@ -35,6 +46,7 @@ Person.propTypes = {
   handleIncrement: PropTypes.func.isRequired,
   handleDecrement: PropTypes.func.isRequired,
   isUpdating: PropTypes.bool.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 export default Person;
