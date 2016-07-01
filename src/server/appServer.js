@@ -79,7 +79,7 @@ if (__PROD__) {
 }
 
 app.get('/api/v0/*', (req, res) => {
-  const routeSegment = req.path.split('/api/v0/').pop();
+  const routeSegment = req.path.replace('/api/v0/', '');
   req.pipe(
     request
       .get(`http://localhost:8080/${routeSegment}`)
@@ -91,7 +91,7 @@ app.get('/api/v0/*', (req, res) => {
 });
 
 app.post('/api/v0/*', (req, res) => {
-  const routeSegment = req.path.split('/api/v0/').pop();
+  const routeSegment = req.path.replace('/api/v0/', '');
   req.pipe(
     request
       .post(`http://localhost:8080/${routeSegment}`)
