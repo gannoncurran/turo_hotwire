@@ -15,7 +15,9 @@
   "scripts": {
     "test": "mocha config/mocha/setup.js \"src/**/*.spec.js\" --reporter progress",
     "test:watch": "npm run test -- --watch --watch-extensions jsx",
-    "start": "node ./src/server/server.js",
+    "start": "npm run start:api & npm run start:app",
+    "start:api": "node ./src/server/apiServer.js",
+    "start:app": "node ./src/server/server.js",
     "production": "npm run build && NODE_ENV=production node ./src/server/server.js",
     "build": "npm test && rimraf public && NODE_ENV=production webpack --config ./webpack.build.config.js --progress --profile --colors"
   },
