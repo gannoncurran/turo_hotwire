@@ -31,8 +31,8 @@ class App extends Component {
     return (
       <div className="container">
         <ReactHelmet
-          title="Home"
-          titleTemplate="Universal Starter - %s"
+          title="Search for Rental Cars"
+          titleTemplate="Hotwire’d - %s"
           meta={[
             {
               charset: 'utf-8',
@@ -43,11 +43,11 @@ class App extends Component {
             },
             {
               property: 'og:title',
-              content: 'Redux Universal Boilerplate',
+              content: 'Turo Code Challenge: Hotwire API Wrapper',
             },
             {
               property: 'og:description',
-              content: 'A skeleton for starting Universal Express/React/Redux applications',
+              content: 'Search for rental cars with the HotWire API',
             },
           ]}
         />
@@ -56,7 +56,6 @@ class App extends Component {
         <nav className="nav">
           <Link className="nav__item" to={'/home'}>Home</Link>
           <Link className="nav__item" to={'/subpage'}>Subpage</Link>
-          <Link className="nav__item" to={'/people'}>People</Link>
         </nav>
         {this.props.children}
       </div>

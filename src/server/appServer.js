@@ -5,9 +5,9 @@ import path from 'path';
 import express from 'express';
 import request from 'request';
 import helmet from 'helmet';
+import enforce from 'express-sslify';
 import favicon from 'serve-favicon';
 import logger from 'morgan';
-import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import template from 'lodash.template';
 import compression from 'compression';
@@ -19,6 +19,7 @@ import { trigger } from 'redial';
 
 import { Provider } from 'react-redux';
 import configureStore from '../common/store/configureStore';
+import { syncHistoryWithStore } from 'react-router-redux';
 
 import ReactHelmet from 'react-helmet';
 let rHCompiled;
@@ -26,6 +27,7 @@ let rHCompiled;
 const __projectRoot = path.join(__dirname, '../..');
 
 const __PROD__ = process.env.NODE_ENV === 'production';
+
 const app = express();
 
 const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
@@ -35,14 +37,13 @@ let firstLoad = true;
 
 app.disable('x-powered-by');
 app.use(favicon(path.resolve(__projectRoot, 'assets', 'favicon.ico')));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
 app.use(logger('dev'));
 app.use(helmet());
 app.use(compression());
 
-console.log('PRODUCTION: Serving static files from assets/');
+app.use(bodyParser.json());
+
+console.log('Serving static files from assets/');
 app.use(express.static(
   path.resolve(__projectRoot, 'assets'),
   { maxAge: 365 * 24 * 60 * 60 * 1000 }
@@ -50,6 +51,7 @@ app.use(express.static(
 
 if (__PROD__) {
   console.log('PRODUCTION: Serving built files from public/');
+  app.use(enforce.HTTPS({ trustProtoHeader: true })); // eslint-disable-line new-cap
   app.use(express.static(
     path.resolve(__projectRoot, 'public'),
     { maxAge: 365 * 24 * 60 * 60 * 1000 }
@@ -78,29 +80,29 @@ if (__PROD__) {
   app.use(webpackHotMiddleware(compiler, { log: console.log }));
 }
 
-app.get('/api/v0/*', (req, res) => {
-  const routeSegment = req.path.replace('/api/v0/', '');
-  req.pipe(
-    request
-      .get(`http://localhost:8080/${routeSegment}`)
-      .on('error', (error) => {
-        console.log('Server Error', error);
-        res.status(500).send(error.message);
-      })
-  ).pipe(res);
-});
-
-app.post('/api/v0/*', (req, res) => {
-  const routeSegment = req.path.replace('/api/v0/', '');
-  req.pipe(
-    request
-      .post(`http://localhost:8080/${routeSegment}`)
-      .on('error', (error) => {
-        console.log('Server Error', error);
-        res.status(500).send(error.message);
-      })
-  ).pipe(res);
-});
+// app.get('/api/v0/*', (req, res) => {
+//   const routeSegment = req.path.replace('/api/v0/', '');
+//   req.pipe(
+//     request
+//       .get(`http://localhost:8080/${routeSegment}`)
+//       .on('error', (error) => {
+//         console.log('Server Error', error);
+//         res.status(500).send(error.message);
+//       })
+//   ).pipe(res);
+// });
+//
+// app.post('/api/v0/*', (req, res) => {
+//   const routeSegment = req.path.replace('/api/v0/', '');
+//   req.pipe(
+//     request
+//       .post(`http://localhost:8080/${routeSegment}`)
+//       .on('error', (error) => {
+//         console.log('Server Error', error);
+//         res.status(500).send(error.message);
+//       })
+//   ).pipe(res);
+// });
 
 app.get('*', (req, res) => {
   // bust node's require.cache while in development to allow rendering of updated modules
@@ -113,11 +115,22 @@ app.get('*', (req, res) => {
     });
   }
   firstLoad = false;
+
   // require routes here to pull in updated modules after cache bust above
-  const routes = require('../common/routes/root').default;
-  const store = configureStore();
+  const ssrInitialState = {
+    sourceRequest: {
+      protocol: req.headers['x-forwarded-proto'] || req.protocol,
+      host: req.headers.host,
+    },
+  };
+  const store = configureStore(ssrInitialState);
   const { dispatch, getState } = store;
-  const history = createMemoryHistory(req.path);
+  // const routes = require('../common/routes/root').default;
+  const getRoutes = require('../common/routes/getRoutes').default;
+  const routes = getRoutes();
+  const memoryHistory = createMemoryHistory(req.path);
+  const history = syncHistoryWithStore(memoryHistory, store);
+
   const head = {};
   const data = {};
   const assets = JSON.parse(

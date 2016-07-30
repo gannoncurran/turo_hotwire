@@ -50,6 +50,7 @@
     "cloudinary": "^1.4.1",
     "compression": "^1.6.2",
     "connect-busboy": "0.0.2",
+    "cookie-parser": "^1.4.3",
     "css-loader": "^0.23.1",
     "debug": "^2.2.0",
     "enzyme": "^2.3.0",

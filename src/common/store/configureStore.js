@@ -1,5 +1,7 @@
 /* eslint-disable global-require */
 import { createStore, applyMiddleware } from 'redux';
+import { routerMiddleware } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 import thunk from 'redux-thunk';
 import axios from 'axios';
 import rootReducer from '../reducers';
@@ -9,7 +11,8 @@ const configureStore = (initialState) => {
     rootReducer,
     initialState,
     applyMiddleware(
-      thunk.withExtraArgument({ axios })
+      thunk.withExtraArgument({ axios }),
+      routerMiddleware(browserHistory)
     )
   );
 
