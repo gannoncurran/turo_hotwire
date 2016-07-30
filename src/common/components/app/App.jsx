@@ -32,7 +32,13 @@ class App extends Component {
       <div className="container">
         <ReactHelmet
           title="Search for Rental Cars"
-          titleTemplate="Hotwire’d - %s"
+          titleTemplate="Hotwire’d | %s"
+          link={[
+            {
+              rel: 'stylesheet',
+              href: 'https://fonts.googleapis.com/css?family=Playfair+Display:900|Poppins',
+            },
+          ]}
           meta={[
             {
               charset: 'utf-8',
@@ -51,11 +57,10 @@ class App extends Component {
             },
           ]}
         />
-        <div className="logo" />
-        <h1 className="headline">App</h1>
+        <h1 className="headline playfair">HOTWIRE’D</h1>
         <nav className="nav">
-          <Link className="nav__item" to={'/home'}>Home</Link>
-          <Link className="nav__item" to={'/subpage'}>Subpage</Link>
+          <Link className="nav__item" to={'/search'}>Search</Link>
+          <Link className="nav__item" to={'/about'}>About</Link>
         </nav>
         {this.props.children}
       </div>

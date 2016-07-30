@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
 import App from '../components/app/App';
-import Home from '../components/home/Home';
-import Subpage from '../components/subpage/Subpage';
+import Search from '../components/search/Search';
+import About from '../components/about/About';
 import NotFound from '../components/notfound/NotFound';
 
 const getRoutes = () => (
   <Route path="/" component={App}>
-    <IndexRoute component={Home} />
-    <Route path="home" component={Home} />
-    <Route path="subpage" component={Subpage} />
+    <IndexRoute component={Search} />
+    <Route path="search" component={Search} />
+    <Route path="about" component={About} />
     <Route path="*" component={NotFound} />
   </Route>
 );

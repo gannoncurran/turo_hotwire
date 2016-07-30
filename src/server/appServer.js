@@ -80,29 +80,22 @@ if (__PROD__) {
   app.use(webpackHotMiddleware(compiler, { log: console.log }));
 }
 
-// app.get('/api/v0/*', (req, res) => {
-//   const routeSegment = req.path.replace('/api/v0/', '');
-//   req.pipe(
-//     request
-//       .get(`http://localhost:8080/${routeSegment}`)
-//       .on('error', (error) => {
-//         console.log('Server Error', error);
-//         res.status(500).send(error.message);
-//       })
-//   ).pipe(res);
-// });
-//
-// app.post('/api/v0/*', (req, res) => {
-//   const routeSegment = req.path.replace('/api/v0/', '');
-//   req.pipe(
-//     request
-//       .post(`http://localhost:8080/${routeSegment}`)
-//       .on('error', (error) => {
-//         console.log('Server Error', error);
-//         res.status(500).send(error.message);
-//       })
-//   ).pipe(res);
-// });
+// http://api.hotwire.com/v1/search/car?apikey=dd7s3wvhwh5esdjxe3g54289&dest=LAX&startdate=04/20/2017&enddate=04/23/2017&pickuptime=10:00&dropofftime=13:30
+app.get('/api/v1/*', (req, res) => {
+  // const routeSegment = req.path.replace('/api/v0/', '');
+  // const apiKey = process.env.API_KEY;
+  const apiKey = 'dd7s3wvhwh5esdjxe3g54289';
+  req.pipe(
+    request
+      // .get(`http://api.hotwire.com/v1/search/car?apikey=${apikey}${routeSegment}`)
+      .get(`http://api.hotwire.com/v1/search/car?apikey=${apiKey}&dest=LAX&startdate=04/20/2017&enddate=04/23/2017&pickuptime=10:00&dropofftime=13:30`)
+      .on('error', (error) => {
+        // TODO: hand back JSON error package so Redux Thunk handle it
+        console.log('Server Error', error);
+        res.status(500).send(error.message);
+      })
+  ).pipe(res);
+});
 
 app.get('*', (req, res) => {
   // bust node's require.cache while in development to allow rendering of updated modules
