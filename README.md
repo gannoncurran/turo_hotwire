@@ -2,7 +2,7 @@
 
 ## View the Demo
 
-https://fpo-link-to-eb-site
+https://hotwire-dev.us-west-1.elasticbeanstalk.com
 
 ## Get It Running Locally
 
