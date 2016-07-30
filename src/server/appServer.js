@@ -5,7 +5,7 @@ import path from 'path';
 import express from 'express';
 import request from 'request';
 import helmet from 'helmet';
-import enforce from 'express-sslify';
+// import enforce from 'express-sslify';
 import favicon from 'serve-favicon';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
@@ -51,7 +51,7 @@ app.use(express.static(
 
 if (__PROD__) {
   console.log('PRODUCTION: Serving built files from public/');
-  app.use(enforce.HTTPS({ trustProtoHeader: true })); // eslint-disable-line new-cap
+  // app.use(enforce.HTTPS({ trustProtoHeader: true })); // eslint-disable-line new-cap
   app.use(express.static(
     path.resolve(__projectRoot, 'public'),
     { maxAge: 365 * 24 * 60 * 60 * 1000 }
