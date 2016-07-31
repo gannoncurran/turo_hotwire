@@ -33,12 +33,6 @@ class App extends Component {
         <ReactHelmet
           title="Search for Rental Cars"
           titleTemplate="Hotwire’d | %s"
-          link={[
-            {
-              rel: 'stylesheet',
-              href: 'https://fonts.googleapis.com/css?family=Playfair+Display:900|Poppins',
-            },
-          ]}
           meta={[
             {
               charset: 'utf-8',

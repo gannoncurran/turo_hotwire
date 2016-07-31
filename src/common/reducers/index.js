@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import { routerReducer } from 'react-router-redux';
+import cars from './cars';
+import searchForm from './searchForm';
 import sourceRequest from './sourceRequest';
-import people from './people';
 
 const rootReducer = combineReducers({
+  cars,
+  searchForm,
   sourceRequest,
-  people,
   routing: routerReducer,
 });
 
