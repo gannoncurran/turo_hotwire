@@ -5,7 +5,7 @@ import ReactHelmet from 'react-helmet';
 import * as searchForm from '../../actions/searchForm';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
-import buildParams from '../../shared/buildParams';
+import buildParams from '../../helpers/buildParams';
 
 const _form = {};
 

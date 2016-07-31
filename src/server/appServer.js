@@ -12,6 +12,9 @@ import bodyParser from 'body-parser';
 import template from 'lodash.template';
 import compression from 'compression';
 
+import buildApiQuery from '../common/helpers/buildApiQuery';
+import { parseString } from 'xml2js';
+
 import React from 'react';
 import { renderToString } from 'react-dom/server';
 import { RouterContext, createMemoryHistory, match } from 'react-router';
@@ -82,19 +85,22 @@ if (__PROD__) {
 
 // http://api.hotwire.com/v1/search/car?apikey=dd7s3wvhwh5esdjxe3g54289&dest=LAX&startdate=04/20/2017&enddate=04/23/2017&pickuptime=10:00&dropofftime=13:30
 app.get('/api/v1/*', (req, res) => {
-  // const routeSegment = req.path.replace('/api/v0/', '');
+  const rawQuery = req.path.replace('/api/v1/', '');
   // const apiKey = process.env.API_KEY;
   const apiKey = 'dd7s3wvhwh5esdjxe3g54289';
-  req.pipe(
-    request
-      // .get(`http://api.hotwire.com/v1/search/car?apikey=${apikey}${routeSegment}`)
-      .get(`http://api.hotwire.com/v1/search/car?apikey=${apiKey}&dest=LAX&startdate=04/20/2017&enddate=04/23/2017&pickuptime=10:00&dropofftime=13:30`)
-      .on('error', (error) => {
-        // TODO: hand back JSON error package so Redux Thunk handle it
-        console.log('Server Error', error);
-        res.status(500).send(error.message);
-      })
-  ).pipe(res);
+  const fullUrl = `http://api.hotwire.com/v1/search/car?apikey=${apiKey}${buildApiQuery(rawQuery)}`;
+  request(
+    fullUrl,
+    (error, response, body) => {
+      if (!error && response.statusCode === 200) {
+        parseString(body, (err, result) => {
+          res.json({ op: 'carssearch', success: true, apiResponse: result.Hotwire });
+        });
+      } else {
+        res.json({ op: 'carssearch', success: false, errorMessage: 'Hotwire API failure.' });
+      }
+    }
+  );
 });
 
 app.get('*', (req, res) => {
