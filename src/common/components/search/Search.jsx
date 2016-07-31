@@ -118,10 +118,10 @@ const Search = ({
         />
         <label className="label" htmlFor="dropoff-time">Dropoff Time</label>
       </p>
+      <button type="submit">Submit</button>
       <button
         onClick={reset}
       >Clear Form</button>
-      <button type="submit">Submit</button>
     </form>
   </div>
 );

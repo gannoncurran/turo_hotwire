@@ -24,14 +24,14 @@ export function carsSearch(query) {
     )
       .then(res => {
         if (res.data.op === 'carssearch' && res.data.success) {
-          console.log('AJAX RESPONSE:\n', res.data);
           dispatch({
             type: CARS_SEARCH_SUCCESS,
-            payload: res.data.apiResponse,
+            payload: res.data.cars,
           });
         } else {
           dispatch({
             type: CARS_SEARCH_FAILURE,
+            errorMessage: res.data.errorMessage,
           });
         }
       })

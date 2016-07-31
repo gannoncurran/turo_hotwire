@@ -1,0 +1,332 @@
+{
+  "EBAN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EBAR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EBMN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EBMR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "ECAN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "ECAR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "ECMN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "ECMR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EDAN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EDAR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EDMN": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "EDMR": {
+    "type": "Economy",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/econ.png",
+    "desc": "Kia Rio or similar"
+  },
+  "CBAN": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CBAR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CBMR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CCAN": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CCAR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CCMN": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CCMR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CDAN": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CDAR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CDMN": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "CDMR": {
+    "type": "Compact",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/compact.png",
+    "desc": "Hyundai Accent or similar"
+  },
+  "FCAR": {
+    "type": "Full-Size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize.png",
+    "desc": "Ford Fusion or similar"
+  },
+  "FCMR": {
+    "type": "Full-Size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize.png",
+    "desc": "Ford Fusion or similar"
+  },
+  "FDAR": {
+    "type": "Full-Size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize.png",
+    "desc": "Ford Fusion or similar"
+  },
+  "FDMR": {
+    "type": "Full-Size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize.png",
+    "desc": "Ford Fusion or similar"
+  },
+  "FFAR": {
+    "type": "Full-Size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize_SUV.png",
+    "desc": "Chevy Tahoe or similar"
+  },
+  "FRAR": {
+    "type": "Full-Size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize_SUV.png",
+    "desc": "Chevy Tahoe or similar"
+  },
+  "FFMR": {
+    "type": "Full-Size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize_SUV.png",
+    "desc": "Chevy Tahoe or similar"
+  },
+  "FRMR": {
+    "type": "Full-Size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/FullSize_SUV.png",
+    "desc": "Chevy Tahoe or similar"
+  },
+  "ICAR": {
+    "type": "Mid-size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize.png",
+    "desc": "Toyota Corolla or similar"
+  },
+  "ICMR": {
+    "type": "Mid-size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize.png",
+    "desc": "Toyota Corolla or similar"
+  },
+  "IDAR": {
+    "type": "Mid-size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize.png",
+    "desc": "Toyota Corolla or similar"
+  },
+  "IDMR": {
+    "type": "Mid-size",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize.png",
+    "desc": "Toyota Corolla or similar"
+  },
+  "IFAR": {
+    "type": "Mid-size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize_SUV.png",
+    "desc": "Toyota Rav4 or similar"
+  },
+  "IFMR": {
+    "type": "Mid-size SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Midsize_SUV.png",
+    "desc": "Toyota Rav4 or similar"
+  },
+  "LCAR": {
+    "type": "Luxury",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Luxury.png",
+    "desc": "Cadillac ATS or similar"
+  },
+  "LDAR": {
+    "type": "Luxury",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Luxury.png",
+    "desc": "Cadillac ATS or similar"
+  },
+  "MVAR": {
+    "type": "Minivan",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Minivan.png",
+    "desc": "Dodge Grand Caravan or similar"
+  },
+  "MVMR": {
+    "type": "Minivan",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Minivan.png",
+    "desc": "Dodge Grand Caravan or similar"
+  },
+  "PCAR": {
+    "type": "Premium",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Premium.png",
+    "desc": "Nissan Maxima or similar"
+  },
+  "PDAR": {
+    "type": "Premium",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Premium.png",
+    "desc": "Nissan Maxima or similar"
+  },
+  "SCAR": {
+    "type": "Standard",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard.png",
+    "desc": "Volkswagen Jetta or similar"
+  },
+  "SCMR": {
+    "type": "Standard",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard.png",
+    "desc": "Volkswagen Jetta or similar"
+  },
+  "SDAR": {
+    "type": "Standard",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard.png",
+    "desc": "Volkswagen Jetta or similar"
+  },
+  "SDMR": {
+    "type": "Standard",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard.png",
+    "desc": "Volkswagen Jetta or similar"
+  },
+  "SFAR": {
+    "type": "Standard SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard_SUV_correct.png",
+    "desc": "Hyundai Santa Fe or similar"
+  },
+  "SFMR": {
+    "type": "Standard SUV",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Standard_SUV_correct.png",
+    "desc": "Hyundai Santa Fe or similar"
+  },
+  "SPAR": {
+    "type": "Standard Pickup Truck",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Pickup.png",
+    "desc": "Chevy Colorado or similar"
+  },
+  "STAR": {
+    "type": "Convertible",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Convertible.png",
+    "desc": "Ford Mustang or similar"
+  },
+  "SXAR": {
+    "type": "Special Car",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": "Compact size or larger, but priced like a compact"
+  },
+  "XXAR": {
+    "type": "Special Car",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": "Compact size or larger, but priced like a compact"
+  },
+  "SWAR": {
+    "type": "Standard Wagon",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "SWMR": {
+    "type": "Standard Wagon",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "CWAR": {
+    "type": "Compact Wagon",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "CWMR": {
+    "type": "Compact Wagon",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MDMR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MDMN": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MDAR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MCMR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MCMN": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MCAR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MBMR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MBMN": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  },
+  "MBAR": {
+    "type": "Mini",
+    "imgUrl": "https://ak-secure.hotwirestatic.com/2016.19/static/images/car/cartypes/181x82/US/Special.png",
+    "desc": ""
+  }
+}

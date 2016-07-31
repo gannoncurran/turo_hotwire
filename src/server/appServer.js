@@ -94,10 +94,24 @@ app.get('/api/v1/*', (req, res) => {
     (error, response, body) => {
       if (!error && response.statusCode === 200) {
         parseString(body, (err, result) => {
-          res.json({ op: 'carssearch', success: true, apiResponse: result.Hotwire });
+          const cars = result.Hotwire.Result[0].CarResult.map((car) => {
+            const flattenedCar = {};
+            Object.keys(car).forEach((key) => {
+              if (Array.isArray(car[key]) && car[key].length < 2) {
+                flattenedCar[key] = car[key][0];
+              }
+            });
+            return flattenedCar;
+          });
+          res.json({ op: 'carssearch', success: true, cars });
         });
       } else {
-        res.json({ op: 'carssearch', success: false, errorMessage: 'Hotwire API failure.' });
+        res.json({
+          op: 'carssearch',
+          success: false,
+          errorMessage: `Sorry, Hotwire is currently unavailable.
+          Give us a minute and try again.`,
+        });
       }
     }
   );

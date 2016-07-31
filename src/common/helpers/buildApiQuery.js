@@ -3,7 +3,7 @@
 
 const buildParams = query =>
   query
-  .split('%7C')
+  .split('_')
   .map(kv => {
     const keyValue = kv.split('=');
     const key = keyValue[0];

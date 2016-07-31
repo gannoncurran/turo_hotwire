@@ -8,7 +8,7 @@ import update from 'react/lib/update';
 
 const cars = (
   state = {
-    data: {},
+    data: [],
     isLoading: false,
     error: false,
     errorMessage: '',
