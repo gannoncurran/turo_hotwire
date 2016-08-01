@@ -42,9 +42,11 @@ const Results = ({
             }}
             key={car.HWRefNumber}
           >
-            <p>{type}</p>
             <img src={imgUrl} alt="desc" />
+            <p>{type}</p>
             <p>{desc}</p>
+            <p>{car.MileageDescription} miles</p>
+            <p>{car.LocationDescription}</p>
             <p>{
                 currencySymbols[car.CurrencyCode] || ''
               }{
