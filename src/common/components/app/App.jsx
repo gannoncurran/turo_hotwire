@@ -51,11 +51,25 @@ class App extends Component {
             },
           ]}
         />
-        <h1 className="headline playfair">HOTWIRE’D</h1>
-        <nav className="nav">
-          <Link className="nav__item" to={'/search'}>Search</Link>
-          <Link className="nav__item" to={'/about'}>About</Link>
-        </nav>
+        <header className="header header--compact">
+          <div className="intro">
+            <div className="car-icon"></div>
+            <h1 className="hotwired">
+              HOTWIRE<span className="hotwired__apostrophe">’</span>D
+            </h1>
+            <div className="welcome-wrapper">
+              <p
+                className="welcome-message"
+              >
+                Use the Hotwire rental car search engine to find rental cars fast.<br />
+                Let’s get you into the driver’s seat and out on the road.
+              </p>
+            </div>
+          </div>
+          <div className="action-label">
+            <h2 className="action-label__title">Where To?</h2>
+          </div>
+        </header>
         {this.props.children}
       </div>
     );

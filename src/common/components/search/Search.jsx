@@ -49,10 +49,10 @@ const Search = ({
   setDropoffTime,
   reset,
 }) => (
-  <div>
+  <div className="search">
     <ReactHelmet title="Search" />
-    <div className="subhead">Search</div>
     <form
+      className="form"
       onSubmit={handleSubmit({
         dest,
         startDate,
@@ -63,65 +63,21 @@ const Search = ({
       encType="multipart/form-data"
       method="post"
     >
-      <p>
-        <input
-          ref={c => { _form.dest = c; return; }}
-          onChange={setDest}
-          id="dest"
-          name="dest"
-          type="text"
-          value={dest}
-        />
-        <label className="label" htmlFor="dest">Location</label>
-      </p>
-      <p>
-        <input
-          ref={c => { _form.startDate = c; return; }}
-          onChange={setStartDate}
-          id="start-date"
-          name="startDate"
-          type="text"
-          value={startDate}
-        />
-        <label className="label" htmlFor="start-date">Start Date</label>
-      </p>
-      <p>
-        <input
-          ref={c => { _form.pickupTime = c; return; }}
-          onChange={setPickupTime}
-          id="pickup-time"
-          name="pickupTime"
-          type="text"
-          value={pickupTime}
-        />
-        <label className="label" htmlFor="pickup-time">Pickup Time</label>
-      </p>
-      <p>
-        <input
-          ref={c => { _form.endDate = c; return; }}
-          onChange={setEndDate}
-          id="end-date"
-          name="endDate"
-          type="text"
-          value={endDate}
-        />
-        <label className="label" htmlFor="end-date">End Date</label>
-      </p>
-      <p>
-        <input
-          ref={c => { _form.dropoffTime = c; return; }}
-          onChange={setDropoffTime}
-          id="dropoff-time"
-          name="dropoffTime"
-          type="text"
-          value={dropoffTime}
-        />
-        <label className="label" htmlFor="dropoff-time">Dropoff Time</label>
-      </p>
-      <button type="submit">Submit</button>
-      <button
-        onClick={reset}
-      >Clear Form</button>
+      <div className="form__input-group">
+        <div className="form__compound-field">
+          <input
+            className="form__input"
+            ref={c => { _form.dest = c; return; }}
+            onChange={setDest}
+            id="dest"
+            name="dest"
+            type="text"
+            placeholder="City Name or Airport Code"
+            value={dest}
+          />
+        </div>
+        <label className="form__label" htmlFor="dest">Pickup Location</label>
+      </div>
     </form>
   </div>
 );

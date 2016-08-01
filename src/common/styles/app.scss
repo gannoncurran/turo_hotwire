@@ -1,44 +1,5 @@
 @import 'vars';
 @import 'fonts';
-
-$gray-9: #999;
-$gray-6: #666;
-$yellow: #ff0;
-
-html {
-  box-sizing: border-box;
-  text-rendering: optimizeLegibility;
-  min-width: 200px;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: inherit;
-}
-
-// =================================================================
-
-.container {
-  margin: 40px;
-}
-
-.headline {
-  color: $gray-6;
-}
-
-.subhead {
-  color: $gray-9;
-}
-
-.nav {
-  height: 40px;
-  border-bottom: 1px solid $gray-9;
-  margin-bottom: 20px;
-
-  &__item {
-    text-transform: uppercase;
-    font-size: 12px;
-    padding-right: 10px;
-  }
-}
+@import 'main';
+@import 'form';
+@import 'search';
