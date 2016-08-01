@@ -1,8 +1,7 @@
 /* eslint-disable global-require */
 import React, { PropTypes, Component } from 'react';
-import { Link } from 'react-router';
 import ReactHelmet from 'react-helmet';
-
+import Header from './Header';
 // When appServer.js requires './src/routes' for react-router "match" server-side render,
 // eventually the require tree will present these css and scss files, and
 // node will blow up — so, we'll only load these during webpack bundles.
@@ -51,25 +50,7 @@ class App extends Component {
             },
           ]}
         />
-        <header className="header header--compact">
-          <div className="intro">
-            <div className="car-icon"></div>
-            <h1 className="hotwired">
-              HOTWIRE<span className="hotwired__apostrophe">’</span>D
-            </h1>
-            <div className="welcome-wrapper">
-              <p
-                className="welcome-message"
-              >
-                Use the Hotwire rental car search engine to find rental cars fast.<br />
-                Let’s get you into the driver’s seat and out on the road.
-              </p>
-            </div>
-          </div>
-          <div className="action-label">
-            <h2 className="action-label__title">Where To?</h2>
-          </div>
-        </header>
+        <Header />
         {this.props.children}
       </div>
     );

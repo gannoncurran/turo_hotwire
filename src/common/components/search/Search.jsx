@@ -45,6 +45,7 @@ class Search extends Component {
     super(props);
     this.state = {
       navigator: false,
+      locating: false,
     };
     this.tryGeolocation = () => {
       if (typeof navigator !== 'undefined' && navigator.geolocation) {
@@ -52,12 +53,12 @@ class Search extends Component {
       }
     };
     this.getCurrentLocation = (setDestCb) => (e) => {
-      console.log('DEST CALLBACK');
-      console.log(setDestCb);
       e.preventDefault();
       e.stopPropagation();
       e.target.blur();
+      this.setState({ locating: true });
       navigator.geolocation.getCurrentPosition((loc) => {
+        this.setState({ locating: false });
         setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
       });
     };
@@ -97,6 +98,7 @@ class Search extends Component {
                   id="dest"
                   name="dest"
                   type="text"
+                  autoComplete="off"
                   placeholder="City Name or Point of Interest"
                   value={places.autocompleteQuery}
                 />
@@ -107,12 +109,12 @@ class Search extends Component {
                       : ''}`
                   }
                   onClick={this.getCurrentLocation(setDest)}
-                >Use Current<br />Location</button>
+                >{this.state.locating ? 'Locating…' : <span>Use Current<br />Location</span>}</button>
               </div>
               <label className="form__label" htmlFor="dest">Pickup Location</label>
             </div>
           }
-          {predictions.length > 0 &&
+          {!dest && predictions.length > 0 &&
             <div>
               {
                 predictions.map((prediction, i) => (
