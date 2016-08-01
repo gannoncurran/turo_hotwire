@@ -31,6 +31,9 @@ const __projectRoot = path.join(__dirname, '../..');
 
 const __PROD__ = process.env.NODE_ENV === 'production';
 
+const googlePlaceApiBaseUrl = 'https://maps.googleapis.com/maps/api/place/';
+const googleApiKey = process.env.GOOGLE_PLACES_KEY;
+
 const app = express();
 
 const index = fs.readFileSync('./src/index.tpl.html', 'utf8');
@@ -84,8 +87,8 @@ if (__PROD__) {
 }
 
 // http://api.hotwire.com/v1/search/car?apikey=dd7s3wvhwh5esdjxe3g54289&dest=LAX&startdate=04/20/2017&enddate=04/23/2017&pickuptime=10:00&dropofftime=13:30
-app.get('/api/v1/*', (req, res) => {
-  const rawQuery = req.path.replace('/api/v1/', '');
+app.get('/api/v1/hw/*', (req, res) => {
+  const rawQuery = req.path.replace('/api/v1/hw/', '');
   // const apiKey = process.env.API_KEY;
   const apiKey = 'dd7s3wvhwh5esdjxe3g54289';
   const fullUrl = `http://api.hotwire.com/v1/search/car?apikey=${apiKey}${buildApiQuery(rawQuery)}`;
@@ -115,6 +118,13 @@ app.get('/api/v1/*', (req, res) => {
       }
     }
   );
+});
+
+app.get('/api/v1/gp/*', (req, res) => {
+  const clientQuery = req.originalUrl.replace('/api/v1/gp/', '');
+  const fullUrl = `${googlePlaceApiBaseUrl}${clientQuery}&key=${googleApiKey}`;
+  console.log('==== google query url', fullUrl);
+  req.pipe(request.get(fullUrl)).pipe(res);
 });
 
 app.get('*', (req, res) => {

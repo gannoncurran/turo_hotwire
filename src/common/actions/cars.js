@@ -19,7 +19,7 @@ export function carsSearch(query) {
       baseURL: `${srcRequest.protocol}://${srcRequest.host}/`,
     };
     return axios.get(
-      `/api/v1/${query}`,
+      `/api/v1/hw/${query}`,
       axiosConfig
     )
       .then(res => {
