@@ -37,11 +37,6 @@ const mapDispatchToProps = (dispatch) => ({
   setPickupTime: () => { dispatch(searchFormActions.setPickupTime(_form.pickupTime.value)); },
   setEndDate: () => { dispatch(searchFormActions.setEndDate(_form.endDate.value)); },
   setDropoffTime: () => { dispatch(searchFormActions.setDropoffTime(_form.dropoffTime.value)); },
-  clearDest: () => { dispatch(searchFormActions.clearDest()); },
-  clearStartDate: () => { dispatch(searchFormActions.clearStartDate()); },
-  clearPickupTime: () => { dispatch(searchFormActions.clearPickupTime()); },
-  clearEndDate: () => { dispatch(searchFormActions.clearEndDate()); },
-  clearDropoffTime: () => { dispatch(searchFormActions.clearDropoffTime()); },
 });
 
 class Search extends Component {
@@ -221,11 +216,6 @@ Search.propTypes = {
   setPickupTime: PropTypes.func.isRequired,
   setEndDate: PropTypes.func.isRequired,
   setDropoffTime: PropTypes.func.isRequired,
-  clearDest: PropTypes.func.isRequired,
-  clearStartDate: PropTypes.func.isRequired,
-  clearPickupTime: PropTypes.func.isRequired,
-  clearEndDate: PropTypes.func.isRequired,
-  clearDropoffTime: PropTypes.func.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

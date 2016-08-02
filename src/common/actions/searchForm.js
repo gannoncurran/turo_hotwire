@@ -7,11 +7,6 @@ import {
   SEARCH_FORM_SET_DROPOFFTIME,
 
   SEARCH_FORM_CLEAR_DEST,
-  SEARCH_FORM_CLEAR_STARTDATE,
-  SEARCH_FORM_CLEAR_PICKUPTIME,
-  SEARCH_FORM_CLEAR_ENDDATE,
-  SEARCH_FORM_CLEAR_DROPOFFTIME,
-
   SEARCH_FORM_CLEAR_PICKUP,
   SEARCH_FORM_CLEAR_DROPOFF,
 
@@ -64,32 +59,8 @@ export function clearPickup() {
   };
 }
 
-export function clearStartDate() {
-  return {
-    type: SEARCH_FORM_CLEAR_STARTDATE,
-  };
-}
-
-export function clearPickupTime() {
-  return {
-    type: SEARCH_FORM_CLEAR_PICKUPTIME,
-  };
-}
-
 export function clearDropoff() {
   return {
     type: SEARCH_FORM_CLEAR_DROPOFF,
-  };
-}
-
-export function clearEndDate() {
-  return {
-    type: SEARCH_FORM_CLEAR_ENDDATE,
-  };
-}
-
-export function clearDropoffTime() {
-  return {
-    type: SEARCH_FORM_CLEAR_DROPOFFTIME,
   };
 }
