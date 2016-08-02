@@ -13,6 +13,7 @@ if (process.env.IN_BUNDLE) {
 }
 
 let resizeTimeout;
+let handleResize;
 
 class App extends Component {
   constructor(props) {
@@ -35,14 +36,21 @@ class App extends Component {
       );
     }
 
-    const w = window;
-    w.addEventListener('resize', throttle(() => {
+    handleResize = throttle(() => {
       if (resizeTimeout) clearTimeout(resizeTimeout);
       this.setState({ animate: false });
       resizeTimeout = setTimeout(() => {
         this.setState({ animate: true });
       }, 350);
-    }, 250));
+    }, 250);
+
+    const w = window;
+    w.addEventListener('resize', handleResize);
+  }
+
+  componentWillUnmount() {
+    const w = window;
+    w.removeEventListener('resize', handleResize);
   }
 
   render() {

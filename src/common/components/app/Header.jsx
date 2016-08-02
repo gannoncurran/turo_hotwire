@@ -26,10 +26,12 @@ const Header = ({
     }
   >
     <div className="intro">
-      <div className="car-icon"></div>
-      <h1 className="hotwired">
-        HOTWIRE<span className="hotwired__apostrophe">’</span>D
-      </h1>
+      <div className="ident-wrapper">
+        <div className="car-icon"></div>
+        <h1 className="hotwired">
+          HOTWIRE<span className="hotwired__apostrophe">’</span>D
+        </h1>
+      </div>
       <div className="welcome-wrapper">
         <p
           className="welcome-message"
@@ -39,6 +41,7 @@ const Header = ({
         </p>
       </div>
     </div>
+    <div className="summary">things<br />things<br />things<br /></div>
     <div className="action-label">
       <h2 className="action-label__title">
         {!dest && 'Where To?'}

@@ -1,0 +1,225 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: column;
+  top: 0;
+  text-align: center;
+  // height: 54vh;
+  // min-height: 350px;
+  width: 100vw;
+  min-width: 320px;
+  overflow: hidden;
+  transition: all .5s ease;
+
+  &--compact {
+    // height: 260px;
+    // min-height: 260px;
+    transition: all .5s ease;
+
+    .intro {
+      opacity: 1;
+      padding-top: 50px;
+      transition: all .5s ease;
+    }
+
+    .ident-wrapper {
+      height: 115px;
+      transition: height .5s ease;
+    }
+
+    .car-icon {
+      width: 16px;
+      height: 16px;
+      transition: width .5s ease, height .5s ease;
+    }
+
+    .hotwired {
+      font-size: 24px;
+      padding-bottom: 6px;
+      padding-left: 50px;
+      padding-right: 50px;
+      transition: all .5s ease;
+    }
+
+    .welcome-wrapper {
+      height: 0;
+      transition: height .5s ease;
+    }
+
+    .welcome-message {
+      opacity: 0;
+      transform: scale(0, 0);
+      transform-origin: top center;
+      transition: all .5s ease;
+    }
+  }
+}
+
+.intro {
+  position: relative;
+  max-width: 600px;
+  padding: 40px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  transition: all .5s ease;
+  // transition: padding-top .5s ease;
+}
+
+.ident-wrapper {
+  text-align: center;
+  height: 180px;
+  overflow: hidden;
+  transition: height .5s ease;
+}
+
+.car-icon {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: url('/images/car_icon.svg');
+  background-position: top center;
+  background-size: cover;
+  // flex-shrink: 0;
+  transition: width .5s ease, height .5s ease;
+}
+
+.hotwired {
+  // display: inline-block;
+  font-family: 'Playfair Display', serif;
+  font-weight: 900;
+  padding: 4px 80px 10px;
+  border-top: 1px solid $gray-d;
+  border-bottom: 1px solid $gray-d;
+  color: $white;
+  letter-spacing: 3px;
+  font-size: 48px;
+  // flex-shrink: 0;
+  transition: all .5s ease;
+
+  &__apostrophe {
+    position: relative;
+    top: -8px;
+  }
+}
+
+.welcome-wrapper {
+  // background-color: pink;
+  // overflow: hidden;
+  height: 140px;
+  transition: height .5s ease;
+  // flex-shrink: 0;
+}
+
+.welcome-message {
+  // background-color: orange;
+  color: $gray-d;
+  flex-shrink: 1;
+  font-size: 20px;
+  letter-spacing: .75px;
+  margin-top: 0;
+  max-width: 420px;
+  opacity: 1;
+  transform: scale(1, 1);
+  transform-origin: top center;
+  transition: all .5s ease;
+}
+
+.summary {
+  min-width: 320px;
+  background-color: $light-60;
+  text-align: center;
+  width: 100vw;
+  padding: 10px 20px;
+  flex-shrink: 0;
+  flex-grow: 0;
+}
+
+.action-label {
+  min-width: 320px;
+  background-color: $dim-60;
+  text-align: center;
+  width: 100vw;
+  padding: 14px 20px 16px;
+  flex-shrink: 0;
+  flex-grow: 0;
+
+  &__title {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-weight: 900;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: $white;
+  }
+}
+
+@media screen and (max-height: 860px) {
+
+  .ident-wrapper {
+    height: 140px;
+    transition: height .5s ease;
+  }
+
+  .hotwired {
+    font-size: 34px;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-bottom: 8px;
+  }
+
+  .welcome-wrapper {
+    height: 120px;
+  }
+
+  .welcome-message {
+    font-size: 16px;
+    max-width: 340px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  .header {
+    &--compact {
+      // height: 60px;
+      // min-height: 60px;
+
+      .intro {
+        opacity: 0;
+        transform: scale(0, 0);
+        padding: 0;
+        transition: all .5s ease;
+      }
+
+      .ident-wrapper {
+        height: 0;
+        transition: height .5s ease;
+      }
+    }
+  }
+
+  .ident-wrapper {
+    height: 115px;
+    transition: height .5s ease;
+  }
+
+  .hotwired {
+    font-size: 24px;
+    padding-bottom: 6px;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .welcome-wrapper {
+    height: 100px;
+  }
+
+  .welcome-message {
+    max-width: 280px;
+    font-size: 14px;
+  }
+}
