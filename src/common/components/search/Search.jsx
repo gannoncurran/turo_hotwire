@@ -99,7 +99,7 @@ class Search extends Component {
                   name="dest"
                   type="text"
                   autoComplete="off"
-                  placeholder="City Name or Point of Interest"
+                  placeholder="City or Place Name"
                   value={places.autocompleteQuery}
                 />
                 <button
@@ -109,26 +109,33 @@ class Search extends Component {
                       : ''}`
                   }
                   onClick={this.getCurrentLocation(setDest)}
-                >{this.state.locating ? 'Locating…' : <span>Use Current<br />Location</span>}</button>
+                >
+                  {this.state.locating
+                    ? 'Locating…'
+                    : <span>Use Current<br />Location</span>
+                  }
+                </button>
               </div>
               <label className="form__label" htmlFor="dest">Pickup Location</label>
             </div>
           }
           {!dest && predictions.length > 0 &&
-            <div>
+            <div
+              className="predictions"
+            >
               {
                 predictions.map((prediction, i) => (
-                  <div
+                  <ul
                     key={i}
-                    className="form__prediction"
+                    className="predictions__item"
                   >
-                    <p
+                    <li
                       style={{ color: '#fff' }}
                       key={prediction.id}
                     >
                       {prediction.description}
-                    </p>
-                  </div>
+                    </li>
+                  </ul>
                 ))
               }
             </div>

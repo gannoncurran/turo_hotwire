@@ -1,0 +1,25 @@
+.predictions {
+  padding: 0;
+  margin-top: 4px;
+  position: relative;
+
+  &__item {
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+    margin: 0 0 2px;
+    padding: 18px 10px;
+    list-style: none;
+    background-color: $dim-60;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .predictions {
+    &__item {
+      font-size: 12px;
+      padding: 14px 10px;
+      margin-right: 40px;
+    }
+  }
+}

@@ -22,13 +22,11 @@ const throttledAcQuery = throttle((axios, dispatch, axiosConfig, query) =>
   )
     .then(res => {
       if (res.status === 200) {
-        console.log('PLACES AUTOCOMPLETE SUCCESS', res);
         dispatch({
           type: PLACES_AUTOCOMPLETE_SUCCESS,
           payload: res.data.predictions,
         });
       } else {
-        console.log('PLACES AUTOCOMPLETE FAILURE', res);
         dispatch({
           type: PLACES_AUTOCOMPLETE_FAILURE,
           errorMessage: 'Sorry, Hotwire’d is having trouble searching for locations.',
@@ -49,7 +47,6 @@ export function autocomplete(query) {
     getState,
     { axios }
   ) => {
-    console.log('PLACES_AUTOCOMPLETE', query);
     dispatch({ type: PLACES_AUTOCOMPLETE_REQUEST, query });
     const srcRequest = getState().sourceRequest;
     const axiosConfig = {
