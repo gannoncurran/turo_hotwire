@@ -6,9 +6,20 @@ import { connect } from 'react-redux';
 const mapStateToProps = state => ({
   predictions: state.places.autocompleteData,
   dest: state.searchForm.dest,
+  startDate: state.searchForm.startDate,
+  pickupTime: state.searchForm.pickupTime,
+  endDate: state.searchForm.endDate,
+  dropoffTime: state.searchForm.dropoffTime,
 });
 
-const Header = ({ predictions, dest }) => (
+const Header = ({
+  predictions,
+  dest,
+  startDate,
+  pickupTime,
+  endDate,
+  dropoffTime,
+}) => (
   <header
     className={
       `header${predictions.length !== 0 || dest ? ' header--compact' : ''}`
@@ -29,14 +40,25 @@ const Header = ({ predictions, dest }) => (
       </div>
     </div>
     <div className="action-label">
-      <h2 className="action-label__title">Where To?</h2>
+      <h2 className="action-label__title">
+        {!dest && 'Where To?'}
+        {dest && !startDate && 'Pickup Date'}
+        {dest && startDate && !pickupTime && 'Pickup Time'}
+        {dest && startDate && pickupTime && !endDate && 'Dropoff Date'}
+        {dest && startDate && pickupTime && endDate && !dropoffTime && 'Dropoff Time'}
+        {dest && startDate && pickupTime && endDate && dropoffTime && 'OK, ready when you are.'}
+      </h2>
     </div>
   </header>
 );
 
 Header.propTypes = {
-  dest: PropTypes.string,
   predictions: PropTypes.array.isRequired,
+  dest: PropTypes.string,
+  startDate: PropTypes.string,
+  pickupTime: PropTypes.string,
+  endDate: PropTypes.string,
+  dropoffTime: PropTypes.string,
 };
 
 export default connect(mapStateToProps)(Header);
