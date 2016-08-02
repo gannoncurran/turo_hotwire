@@ -4,9 +4,11 @@ import {
   PLACES_AUTOCOMPLETE_SUCCESS,
   PLACES_AUTOCOMPLETE_FAILURE,
 
-  // PLACES_DETAILS_REQUEST,
-  // PLACES_DETAILS_SUCCESS,
-  // PLACES_DETAILS_FAILURE,
+  PLACES_DETAILS_REQUEST,
+  PLACES_DETAILS_SUCCESS,
+  PLACES_DETAILS_FAILURE,
+
+  SEARCH_FORM_SET_DEST,
 } from '../constants';
 
 import throttle from 'lodash.throttle';
@@ -56,6 +58,51 @@ export function autocomplete(query) {
     throttledAcQuery(axios, dispatch, axiosConfig, getState().places.autocompleteQuery);
   };
 }
+
+export function setDestViaPlace(placeId) {
+  return (
+    dispatch,
+    getState,
+    { axios }
+  ) => {
+    dispatch({ type: PLACES_DETAILS_REQUEST });
+    const srcRequest = getState().sourceRequest;
+    const axiosConfig = {
+      headers: { 'Content-Type': 'application/json' },
+      baseURL: `${srcRequest.protocol}://${srcRequest.host}/`,
+    };
+    axios.get(
+      `/api/v1/gp/details/json?placeid=${placeId}`,
+      axiosConfig
+    )
+      .then(res => {
+        if (res.status === 200) {
+          dispatch({
+            type: PLACES_DETAILS_SUCCESS,
+            payload: res.data,
+          });
+          const loc = getState().places.detailsData.result.geometry.location;
+          dispatch({
+            type: SEARCH_FORM_SET_DEST,
+            payload: `${loc.lat},${loc.lng}`,
+          });
+        } else {
+          dispatch({
+            type: PLACES_DETAILS_FAILURE,
+            errorMessage: 'Sorry, Hotwire’d is having trouble searching for locations.',
+          });
+        }
+      })
+      .catch(error => {
+        console.error(`Error in reducer that handles ${PLACES_DETAILS_SUCCESS}: `, error);
+        dispatch({
+          type: PLACES_DETAILS_FAILURE,
+          errorMessage: 'Sorry, Hotwire’d is having trouble searching for locations.',
+        });
+      });
+  };
+}
+
 
 // export function getDetails(placeId) {
 //   return (

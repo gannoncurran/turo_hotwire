@@ -83,9 +83,3 @@ export function clearDropoffTime(dropoffTime) {
     payload: dropoffTime,
   };
 }
-
-export function reset() {
-  return {
-    type: SEARCH_FORM_RESET,
-  };
-}

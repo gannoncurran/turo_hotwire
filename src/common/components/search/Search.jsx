@@ -21,12 +21,17 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handlePlaceChange: () => { dispatch(placesActions.autocomplete(_form.dest.value)); },
   handleSubmit: (query) => (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(push(`/search/${buildParams(query)}`));
   },
+  setDestViaPlace: (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dispatch(placesActions.setDestViaPlace(e.target.id));
+  },
+  handlePlaceChange: () => { dispatch(placesActions.autocomplete(_form.dest.value)); },
   setDest: (locString) => { dispatch(searchFormActions.setDest(locString)); },
   setStartDate: () => { dispatch(searchFormActions.setStartDate(_form.startDate.value)); },
   setPickupTime: () => { dispatch(searchFormActions.setPickupTime(_form.pickupTime.value)); },
@@ -61,16 +66,6 @@ class Search extends Component {
         setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
       });
     };
-    // this.getPlaceDetails = (setDestCb) => (e) => {
-    //   e.preventDefault();
-    //   e.stopPropagation();
-    //   e.target.blur();
-    //   this.setState({ locating: true });
-    //   navigator.geolocation.getCurrentPosition((loc) => {
-    //     this.setState({ locating: false });
-    //     setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
-    //   });
-    // };
   }
 
   render() {
@@ -84,6 +79,7 @@ class Search extends Component {
       dropoffTime,
       handlePlaceChange,
       setDest,
+      setDestViaPlace,
       setStartDate,
       setPickupTime,
       setEndDate,
@@ -139,6 +135,8 @@ class Search extends Component {
                     style={{ color: '#fff' }}
                   >
                     <a
+                      id={prediction.place_id}
+                      onClick={setDestViaPlace}
                       className="predictions__link"
                       href="#"
                     >{prediction.description}</a>
@@ -218,6 +216,7 @@ Search.propTypes = {
   dropoffTime: PropTypes.string,
   handlePlaceChange: PropTypes.func.isRequired,
   setDest: PropTypes.func.isRequired,
+  setDestViaPlace: PropTypes.func.isRequired,
   setStartDate: PropTypes.func.isRequired,
   setPickupTime: PropTypes.func.isRequired,
   setEndDate: PropTypes.func.isRequired,
