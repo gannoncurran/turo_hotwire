@@ -14,12 +14,19 @@ body {
   min-height: 650px;
 }
 
+
 .container {
   height: 100vh;
   min-height: 650px;
   background-image: url('/images/bg_01.jpg');
   background-size: cover;
   background-position: top center;
+
+  // This rule will disable all css transitions - applied to container with js during viewport resizing
+  &--no-anim * {
+    // scss-lint:disable ImportantRule
+    transition: none !important;
+  }
 }
 
 .header {

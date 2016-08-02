@@ -2,6 +2,7 @@
 import React, { PropTypes, Component } from 'react';
 import ReactHelmet from 'react-helmet';
 import Header from './Header';
+import throttle from 'lodash.throttle';
 // When appServer.js requires './src/routes' for react-router "match" server-side render,
 // eventually the require tree will present these css and scss files, and
 // node will blow up — so, we'll only load these during webpack bundles.
@@ -11,7 +12,16 @@ if (process.env.IN_BUNDLE) {
   require('../../styles/app.scss');
 }
 
+let resizeTimeout;
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      animate: true,
+    };
+  }
+
   componentDidMount() {
     // Remove original <link>ed styles from header while in development mode
     // to prevent conflicts with HMR compatible <style>s that have now been
@@ -24,11 +34,20 @@ class App extends Component {
         (link) => { if (mainRegex.test(link.href)) link.parentNode.removeChild(link); }
       );
     }
+
+    const w = window;
+    w.addEventListener('resize', throttle(() => {
+      if (resizeTimeout) clearTimeout(resizeTimeout);
+      this.setState({ animate: false });
+      resizeTimeout = setTimeout(() => {
+        this.setState({ animate: true });
+      }, 350);
+    }, 250));
   }
 
   render() {
     return (
-      <div className="container">
+      <div className={`container${this.state.animate ? '' : ' container--no-anim'}`}>
         <ReactHelmet
           title="Search for Rental Cars"
           titleTemplate="Hotwire’d | %s"
