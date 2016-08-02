@@ -76,8 +76,8 @@ class Header extends Component {
             <div className="summary__item">
               <p className="summary__title">Pick Up:</p>
               <p className="summary__text">
-                {moment(startDate).format('MMMM DD, YYYY')}
-                {pickupTime ? ` at ${moment(`2016-01-01 ${pickupTime}`).format('h:mm a')}` : ''}
+                {moment(startDate, 'YYYY-MM-DD').format('MMMM DD, YYYY')}
+                {pickupTime ? ` at ${moment(`2016-01-01 ${pickupTime}`, 'YYYY-MM-DD HH:mm').format('h:mm a')}` : ''}
               </p>
               <a
                 href="#"
@@ -90,8 +90,8 @@ class Header extends Component {
             <div className="summary__item">
               <p className="summary__title">Drop Off:</p>
               <p className="summary__text">
-                {moment(endDate).format('MMMM DD, YYYY')}
-                {dropoffTime ? ` at ${moment(`2016-01-01 ${dropoffTime}`).format('h:mm a')}` : ''}
+                {moment(endDate, 'YYYY-MM-DD').format('MMMM DD, YYYY')}
+                {dropoffTime ? ` at ${moment(`2016-01-01 ${dropoffTime}`, 'YYYY-MM-DD HH:mm').format('h:mm a')}` : ''}
               </p>
               <a
                 href="#"
@@ -110,20 +110,20 @@ class Header extends Component {
             {
               dest &&
               !startDate &&
-              'Pickup Date'
+              'Select Pickup Date'
             }
             {
               dest &&
               startDate &&
               !pickupTime &&
-              'Pickup Time'
+              'Select Pickup Time'
             }
             {
               dest &&
               startDate &&
               pickupTime &&
               !endDate &&
-              'Dropoff Date'
+              'Select Dropoff Date'
             }
             {
               dest &&
@@ -131,7 +131,7 @@ class Header extends Component {
               pickupTime &&
               endDate &&
               !dropoffTime &&
-              'Dropoff Time'
+              'Select Dropoff Time'
             }
             {
               dest &&

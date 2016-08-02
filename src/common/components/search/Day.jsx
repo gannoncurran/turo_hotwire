@@ -3,53 +3,49 @@ import moment from 'moment';
 
 const renderDay = day => (day > 0 ? day.toString() : '');
 
-const determineNumberColor = (
+const selectable = (
   pickupDate,
   year,
   month,
   day
 ) => {
-  const currentDate = moment().format('YYYY-MM-DD');
-  const active = moment(`${year}-${month}-${day}`).isSameOrAfter(pickupDate || currentDate, 'day');
-  return active ? '#000' : '#999';
-};
+  const dayMoment = moment({
+    year,
+    month: month - 1, // parser treats months as 0 indexed
+    day,
+  });
 
-const determineBgColor = (
-  pickupDate,
-  year,
-  month,
-  day
-) => {
-  const picked = moment(`${year}-${month}-${day}`).isSame(pickupDate, 'day');
-  return picked ? 'orange' : 'white';
-};
-
-const handleClick = (
-  pickupDate,
-  setEndDate,
-  setStartDate,
-  year,
-  month,
-  day
-) => {
-  if (day < 1) {
-    return () => undefined;
-  }
-  const currentDate = moment().format('YYYY-MM-DD');
   if (pickupDate) {
-    const edActive = moment(`${year}-${month}-${day}`)
-    .isAfter(pickupDate, 'day');
-    return edActive ? setEndDate : () => undefined;
+    const pdSegments = pickupDate.split('-');
+    const pickUpMoment = moment({
+      year: pdSegments[0],
+      month: pdSegments[1] - 1, // parser treats months as 0 indexed
+      day: pdSegments[2],
+    });
+    return dayMoment.isAfter(pickUpMoment, 'day');
   }
-  const sdActive = moment(`${year}-${month}-${day}`)
-  .isSameOrAfter(currentDate, 'day');
-  return sdActive ? setStartDate : () => undefined;
-  // if () {
-  //   return pickupDate
-  //     ? setEndDate
-  //     : setStartDate;
-  // }
-  // return () => undefined;
+  const currentMoment = moment();
+  return dayMoment.isSameOrAfter(currentMoment, 'day');
+};
+
+const dayMatchesPickup = (
+  pickupDate,
+  year,
+  month,
+  day
+) => {
+  const dayMoment = moment({
+    year,
+    month: month - 1, // parser treats months as 0 indexed
+    day,
+  });
+  const pdSegments = pickupDate.split('-');
+  const pickUpMoment = moment({
+    year: pdSegments[0],
+    month: pdSegments[1] - 1, // parser treats months as 0 indexed
+    day: pdSegments[2],
+  });
+  return dayMoment.isSame(pickUpMoment, 'day');
 };
 
 const Day = ({
@@ -57,50 +53,59 @@ const Day = ({
     year,
     month,
     day,
-    setStartDate,
-    setEndDate,
-}) => (
-  <div
-    onClick={
-      handleClick(
-        pickupDate,
-        setEndDate,
-        setStartDate,
-        year,
-        month,
-        day
-      )(`${year}-${month}-${day}`)
-    }
-    style={{
-      textAlign: 'center',
-      padding: '8px 0 0',
-      display: 'inline-block',
-      color: determineNumberColor(
-        pickupDate,
-        year,
-        month,
-        day
-      ),
-      width: '40px',
-      height: '40px',
-      borderRadius: '20px',
-      backgroundColor: determineBgColor(
-        pickupDate,
-        year,
-        month,
-        day
-      ),
-    }}
-  >{renderDay(day)}</div>
-);
+    setDate,
+}) => {
+  const active = selectable(
+    pickupDate,
+    year,
+    month,
+    day
+  );
+  const puSet = pickupDate && dayMatchesPickup(
+    pickupDate,
+    year,
+    month,
+    day
+  );
+  return (
+    <div
+      style={{
+        display: 'inline-block',
+        margin: '0',
+        padding: '4px',
+        width: '50px',
+        height: '50px',
+        backgroundColor: 'transparent',
+        overflow: 'hidden',
+      }}
+    >
+      {day > 0 &&
+        <p
+          onClick={active ? setDate(`${year}-${month}-${day}`) : (n => n)}
+          style={{
+            cursor: active ? 'pointer' : 'auto',
+            textAlign: 'center',
+            padding: '10px 0 0',
+            width: '100%',
+            height: '100%',
+            fontSize: '16px',
+            display: 'inline-block',
+            backgroundColor: puSet ? 'rgba(0, 100, 200, .3)' : 'transparent',
+            margin: '0',
+            color: active ? '#000' : '#ccc',
+          }}
+        >{renderDay(day)}</p>
+      }
+    </div>
+  );
+};
 
 Day.propTypes = {
   pickupDate: PropTypes.string,
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   day: PropTypes.number.isRequired,
-  setStartDate: PropTypes.func.isRequired,
-  setEndDate: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
 };
 
 export default Day;

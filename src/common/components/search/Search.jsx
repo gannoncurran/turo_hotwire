@@ -7,7 +7,6 @@ import * as placesActions from '../../actions/places';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import buildParams from '../../helpers/buildParams';
-import moment from 'moment';
 
 import Cal from './Cal';
 import TimePicker from './TimePicker';
@@ -85,7 +84,12 @@ class Search extends Component {
       setDropoffTime,
     } = this.props;
     return (
-      <div className="search">
+      <div
+        style={{
+          backgroundColor: dest ? 'rgba(255, 255, 255, .94)' : 'transparent',
+        }}
+        className="search"
+      >
         <ReactHelmet title="Search" />
         <form
           className="form"
@@ -147,9 +151,7 @@ class Search extends Component {
           {dest && !startDate &&
             <div>
               <Cal
-                pickupDate={startDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
+                setDate={setStartDate}
               />
             </div>
           }
@@ -162,8 +164,7 @@ class Search extends Component {
             <div>
               <Cal
                 pickupDate={startDate}
-                setStartDate={setStartDate}
-                setEndDate={setEndDate}
+                setDate={setEndDate}
               />
             </div>
           }

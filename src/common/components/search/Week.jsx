@@ -7,12 +7,14 @@ const Week = ({
     year,
     month,
     days,
-    setStartDate,
-    setEndDate,
+    setDate,
 }) => (
   <div
     style={{
-
+      fontSize: '0',
+      borderBottom: '1px solid #ccc',
+      display: 'flex',
+      justifyContent: 'space-between',
     }}
   >
    {
@@ -23,8 +25,7 @@ const Week = ({
         year={year}
         month={month}
         day={day}
-        setStartDate={setStartDate}
-        setEndDate={setEndDate}
+        setDate={setDate}
       />
     ))
    }
@@ -36,8 +37,7 @@ Week.propTypes = {
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   days: PropTypes.array.isRequired,
-  setStartDate: PropTypes.func.isRequired,
-  setEndDate: PropTypes.func.isRequired,
+  setDate: PropTypes.func.isRequired,
 };
 
 export default Week;
