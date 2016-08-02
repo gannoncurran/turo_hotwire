@@ -13,7 +13,6 @@ const _form = {};
 const mapStateToProps = state => ({
   places: state.places,
   predictions: state.places.autocompleteData,
-  placeDetails: state.places.detailsData,
   dest: state.searchForm.dest,
   startDate: state.searchForm.startDate,
   pickupTime: state.searchForm.pickupTime,
@@ -62,13 +61,22 @@ class Search extends Component {
         setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
       });
     };
+    // this.getPlaceDetails = (setDestCb) => (e) => {
+    //   e.preventDefault();
+    //   e.stopPropagation();
+    //   e.target.blur();
+    //   this.setState({ locating: true });
+    //   navigator.geolocation.getCurrentPosition((loc) => {
+    //     this.setState({ locating: false });
+    //     setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
+    //   });
+    // };
   }
 
   render() {
     const {
       places,
       predictions,
-      placeDetails,
       dest,
       startDate,
       pickupTime,
@@ -120,25 +128,24 @@ class Search extends Component {
             </div>
           }
           {!dest && predictions.length > 0 &&
-            <div
-              className="predictions"
+            <ul
+              className="predictions__list"
             >
               {
-                predictions.map((prediction, i) => (
-                  <ul
-                    key={i}
+                predictions.map((prediction) => (
+                  <li
                     className="predictions__item"
+                    key={prediction.id}
+                    style={{ color: '#fff' }}
                   >
-                    <li
-                      style={{ color: '#fff' }}
-                      key={prediction.id}
-                    >
-                      {prediction.description}
-                    </li>
-                  </ul>
+                    <a
+                      className="predictions__link"
+                      href="#"
+                    >{prediction.description}</a>
+                  </li>
                 ))
               }
-            </div>
+            </ul>
           }
           {dest && !startDate &&
             <p>
@@ -204,7 +211,6 @@ class Search extends Component {
 Search.propTypes = {
   places: PropTypes.object.isRequired,
   predictions: PropTypes.array.isRequired,
-  placeDetails: PropTypes.object.isRequired,
   dest: PropTypes.string,
   startDate: PropTypes.string,
   pickupTime: PropTypes.string,

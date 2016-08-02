@@ -123,7 +123,6 @@ app.get('/api/v1/hw/*', (req, res) => {
 app.get('/api/v1/gp/*', (req, res) => {
   const clientQuery = req.originalUrl.replace('/api/v1/gp/', '');
   const fullUrl = `${googlePlaceApiBaseUrl}${clientQuery}&key=${googleApiKey}`;
-  console.log('==== google query url', fullUrl);
   req.pipe(request.get(fullUrl)).pipe(res);
 });
 

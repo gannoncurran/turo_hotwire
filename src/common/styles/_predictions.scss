@@ -1,15 +1,25 @@
 .predictions {
-  padding: 0;
-  margin-top: 4px;
-  position: relative;
+
+  &__list {
+    margin: 4px 0 0;
+    position: relative;
+    padding: 0;
+  }
 
   &__item {
-    cursor: pointer;
-    font-size: 14px;
+    padding: 0;
     border-radius: 4px;
     margin: 0 0 2px;
-    padding: 18px 10px;
+    font-size: 14px;
     list-style: none;
+  }
+
+  &__link {
+    display: block;
+    text-decoration: none;
+    border-radius: 4px;
+    padding: 18px 10px;
+    color: $white;
     background-color: $dim-60;
   }
 }
@@ -18,8 +28,11 @@
   .predictions {
     &__item {
       font-size: 12px;
-      padding: 14px 10px;
       margin-right: 40px;
+    }
+
+    &__link {
+      padding: 14px 10px;
     }
   }
 }
