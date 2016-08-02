@@ -11,7 +11,6 @@ import {
   SEARCH_FORM_CLEAR_ENDDATE,
   SEARCH_FORM_CLEAR_DROPOFFTIME,
 
-  SEARCH_FORM_RESET,
 } from '../constants';
 
 import update from 'react/lib/update';
@@ -19,6 +18,7 @@ import update from 'react/lib/update';
 const searchForm = (
   state = {
     dest: null,
+    destName: null,
     startDate: null,
     pickupTime: null,
     endDate: null,
@@ -29,7 +29,8 @@ const searchForm = (
   switch (action.type) {
     case SEARCH_FORM_SET_DEST:
       return update(state, {
-        dest: { $set: action.payload },
+        dest: { $set: action.payload.dest },
+        destName: { $set: action.payload.destName },
       });
     case SEARCH_FORM_SET_STARTDATE:
       return update(state, {

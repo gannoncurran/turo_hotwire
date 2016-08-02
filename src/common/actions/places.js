@@ -81,10 +81,12 @@ export function setDestViaPlace(placeId) {
             type: PLACES_DETAILS_SUCCESS,
             payload: res.data,
           });
-          const loc = getState().places.detailsData.result.geometry.location;
+          const result = getState().places.detailsData.result;
+          const loc = result.geometry.location;
+          const name = result.name;
           dispatch({
             type: SEARCH_FORM_SET_DEST,
-            payload: `${loc.lat},${loc.lng}`,
+            payload: { dest: `${loc.lat},${loc.lng}`, destName: name },
           });
         } else {
           dispatch({

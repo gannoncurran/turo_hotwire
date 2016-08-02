@@ -14,10 +14,10 @@ import {
 
 } from '../constants';
 
-export function setDest(dest) {
+export function setDest(dest, destName) {
   return {
     type: SEARCH_FORM_SET_DEST,
-    payload: dest,
+    payload: { dest, destName },
   };
 }
 

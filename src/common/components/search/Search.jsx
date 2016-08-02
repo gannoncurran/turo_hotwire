@@ -32,7 +32,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(placesActions.setDestViaPlace(e.target.id));
   },
   handlePlaceChange: () => { dispatch(placesActions.autocomplete(_form.dest.value)); },
-  setDest: (locString) => { dispatch(searchFormActions.setDest(locString)); },
+  setDest: (locString, destName) => { dispatch(searchFormActions.setDest(locString, destName)); },
   setStartDate: () => { dispatch(searchFormActions.setStartDate(_form.startDate.value)); },
   setPickupTime: () => { dispatch(searchFormActions.setPickupTime(_form.pickupTime.value)); },
   setEndDate: () => { dispatch(searchFormActions.setEndDate(_form.endDate.value)); },
@@ -63,7 +63,7 @@ class Search extends Component {
       this.setState({ locating: true });
       navigator.geolocation.getCurrentPosition((loc) => {
         this.setState({ locating: false });
-        setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`);
+        setDestCb(`${loc.coords.latitude},${loc.coords.longitude}`, 'Current Location');
       });
     };
   }
