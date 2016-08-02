@@ -1,6 +1,11 @@
 html {
+  height: 100%;
   box-sizing: border-box;
   text-rendering: optimizeLegibility;
+  background-image: url('/images/bg_01.jpg');
+  background-size: cover;
+  background-position: top center;
+  background-attachment: fixed;
 }
 
 *,
@@ -11,15 +16,12 @@ html {
 
 body {
   min-width: 320px;
-  min-height: 650px;
 }
 
 .container {
   height: 100vh;
   min-height: 650px;
-  background-image: url('/images/bg_01.jpg');
-  background-size: cover;
-  background-position: top center;
+
 
   // This rule will disable all css transitions - applied to container with js during viewport resizing
   &--no-anim * {
