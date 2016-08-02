@@ -54,6 +54,8 @@ const searchForm = (
       return update(state, {
         startDate: { $set: null },
         pickupTime: { $set: null },
+        endDate: { $set: null },
+        dropoffTime: { $set: null },
       });
     case SEARCH_FORM_CLEAR_DROPOFF:
       return update(state, {

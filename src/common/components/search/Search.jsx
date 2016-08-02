@@ -10,6 +10,7 @@ import buildParams from '../../helpers/buildParams';
 import moment from 'moment';
 
 import Cal from './Cal';
+import TimePicker from './TimePicker';
 
 const _form = {};
 
@@ -36,10 +37,10 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handlePlaceChange: () => { dispatch(placesActions.autocomplete(_form.dest.value)); },
   setDest: (locString, destName) => { dispatch(searchFormActions.setDest(locString, destName)); },
-  setStartDate: () => { dispatch(searchFormActions.setStartDate(_form.startDate.value)); },
-  setPickupTime: () => { dispatch(searchFormActions.setPickupTime(_form.pickupTime.value)); },
-  setEndDate: () => { dispatch(searchFormActions.setEndDate(_form.endDate.value)); },
-  setDropoffTime: () => { dispatch(searchFormActions.setDropoffTime(_form.dropoffTime.value)); },
+  setStartDate: (dateString) => () => { dispatch(searchFormActions.setStartDate(dateString)); },
+  setPickupTime: (timeString) => () => { dispatch(searchFormActions.setPickupTime(timeString)); },
+  setEndDate: (dateString) => () => { dispatch(searchFormActions.setEndDate(dateString)); },
+  setDropoffTime: (timeString) => () => { dispatch(searchFormActions.setDropoffTime(timeString)); },
 });
 
 class Search extends Component {
@@ -146,52 +147,39 @@ class Search extends Component {
           {dest && !startDate &&
             <div>
               <Cal
-                pickupDate={moment('2016-09-13').format('YYYY-MM-DD')}
-                title="Test"
+                pickupDate={startDate}
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
               />
             </div>
           }
           {dest && startDate && !pickupTime &&
-            <p>
-              <input
-                ref={c => { _form.pickupTime = c; return; }}
-                onChange={setPickupTime}
-                id="pickup-time"
-                name="pickupTime"
-                type="text"
-                value={pickupTime || ''}
-              />
-              <label className="label" htmlFor="pickup-time">Pickup Time</label>
-            </p>
+            <TimePicker
+              setTime={setPickupTime}
+            />
           }
           {dest && startDate && pickupTime && !endDate &&
-            <p>
-              <input
-                ref={c => { _form.endDate = c; return; }}
-                onChange={setEndDate}
-                id="end-date"
-                name="endDate"
-                type="text"
-                value={endDate || ''}
+            <div>
+              <Cal
+                pickupDate={startDate}
+                setStartDate={setStartDate}
+                setEndDate={setEndDate}
               />
-              <label className="label" htmlFor="end-date">End Date</label>
-            </p>
+            </div>
           }
           {dest && startDate && pickupTime && endDate && !dropoffTime &&
-            <p>
-              <input
-                ref={c => { _form.dropoffTime = c; return; }}
-                onChange={setDropoffTime}
-                id="dropoff-time"
-                name="dropoffTime"
-                type="text"
-                value={dropoffTime || ''}
-              />
-              <label className="label" htmlFor="dropoff-time">Dropoff Time</label>
-            </p>
+            <TimePicker
+              setTime={setDropoffTime}
+            />
           }
           {dest && startDate && pickupTime && endDate && dropoffTime &&
-            <p style={{ color: '#fff' }}>--- SUBMIT ---</p>
+            <p
+              style={{
+                color: '#fff',
+              }}
+            >
+              --- SUBMIT ---
+            </p>
           }
         </form>
       </div>

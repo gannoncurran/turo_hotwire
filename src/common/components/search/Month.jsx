@@ -8,6 +8,8 @@ const Month = ({
     year,
     month,
     weeks,
+    setStartDate,
+    setEndDate,
 }) => (
   <div
     style={{
@@ -23,6 +25,8 @@ const Month = ({
         year={year}
         month={month}
         days={week}
+        setStartDate={setStartDate}
+        setEndDate={setEndDate}
       />
     ))
    }
@@ -34,6 +38,8 @@ Month.propTypes = {
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   weeks: PropTypes.array.isRequired,
+  setStartDate: PropTypes.func.isRequired,
+  setEndDate: PropTypes.func.isRequired,
 };
 
 export default Month;

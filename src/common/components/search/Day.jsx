@@ -24,13 +24,53 @@ const determineBgColor = (
   return picked ? 'orange' : 'white';
 };
 
+const handleClick = (
+  pickupDate,
+  setEndDate,
+  setStartDate,
+  year,
+  month,
+  day
+) => {
+  if (day < 1) {
+    return () => undefined;
+  }
+  const currentDate = moment().format('YYYY-MM-DD');
+  if (pickupDate) {
+    const edActive = moment(`${year}-${month}-${day}`)
+    .isAfter(pickupDate, 'day');
+    return edActive ? setEndDate : () => undefined;
+  }
+  const sdActive = moment(`${year}-${month}-${day}`)
+  .isSameOrAfter(currentDate, 'day');
+  return sdActive ? setStartDate : () => undefined;
+  // if () {
+  //   return pickupDate
+  //     ? setEndDate
+  //     : setStartDate;
+  // }
+  // return () => undefined;
+};
+
 const Day = ({
     pickupDate,
     year,
     month,
     day,
+    setStartDate,
+    setEndDate,
 }) => (
   <div
+    onClick={
+      handleClick(
+        pickupDate,
+        setEndDate,
+        setStartDate,
+        year,
+        month,
+        day
+      )(`${year}-${month}-${day}`)
+    }
     style={{
       textAlign: 'center',
       padding: '8px 0 0',
@@ -59,6 +99,8 @@ Day.propTypes = {
   year: PropTypes.number.isRequired,
   month: PropTypes.number.isRequired,
   day: PropTypes.number.isRequired,
+  setStartDate: PropTypes.func.isRequired,
+  setEndDate: PropTypes.func.isRequired,
 };
 
 export default Day;

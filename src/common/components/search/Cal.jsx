@@ -25,7 +25,6 @@ const makeMonths = (startMoment, quantity) => {
 };
 
 const generateMonths = (pickupDate) => {
-  console.log('pickup date: ', pickupDate);
   if (pickupDate) {
     const pickup = moment(pickupDate);
     const calLength = 11 + moment().diff(pickup, 'months');
@@ -36,13 +35,13 @@ const generateMonths = (pickupDate) => {
 
 const Cal = ({
     pickupDate,
-    title,
+    setStartDate,
+    setEndDate,
 }) => (
   <div
     style={{
     }}
   >
-    <h3>{title}</h3>
     {
       generateMonths(pickupDate).map((month, i) => (
         <Month
@@ -51,6 +50,8 @@ const Cal = ({
           year={month.year}
           month={month.month}
           weeks={month.weeks}
+          setStartDate={setStartDate}
+          setEndDate={setEndDate}
         />
       ))
     }
@@ -58,8 +59,9 @@ const Cal = ({
 );
 
 Cal.propTypes = {
-  title: PropTypes.string.isRequired,
   pickupDate: PropTypes.string,
+  setStartDate: PropTypes.func.isRequired,
+  setEndDate: PropTypes.func.isRequired,
 };
 
 export default Cal;

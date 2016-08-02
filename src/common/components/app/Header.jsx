@@ -3,6 +3,7 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as searchFormActions from '../../actions/searchForm';
+import moment from 'moment'
 
 const mapStateToProps = state => ({
   predictions: state.places.autocompleteData,
@@ -71,10 +72,13 @@ class Header extends Component {
               ><span className="icon icon-delete"></span></a>
             </div>
           }
-          {startDate || pickupTime &&
+          {(startDate || pickupTime) &&
             <div className="summary__item">
               <p className="summary__title">Pick Up:</p>
-              <p className="summary__text">{destName}</p>
+              <p className="summary__text">
+                {moment(startDate).format('MMMM DD, YYYY')}
+                {pickupTime ? ` at ${moment(`2016-01-01 ${pickupTime}`).format('h:mm a')}` : ''}
+              </p>
               <a
                 href="#"
                 onClick={clearPickup}
@@ -82,10 +86,13 @@ class Header extends Component {
               ><span className="icon icon-delete"></span></a>
             </div>
           }
-          {endDate || dropoffTime &&
+          {(endDate || dropoffTime) &&
             <div className="summary__item">
               <p className="summary__title">Drop Off:</p>
-              <p className="summary__text">{destName}</p>
+              <p className="summary__text">
+                {moment(endDate).format('MMMM DD, YYYY')}
+                {dropoffTime ? ` at ${moment(`2016-01-01 ${dropoffTime}`).format('h:mm a')}` : ''}
+              </p>
               <a
                 href="#"
                 onClick={clearDropoff}
