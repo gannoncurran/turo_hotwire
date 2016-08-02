@@ -27,6 +27,8 @@ const mapDispatchToProps = (dispatch) => ({
   handleSubmit: (query) => (e) => {
     e.preventDefault();
     e.stopPropagation();
+    console.log('QUERY', query);
+    console.log(`/search/${buildParams(query)}`);
     dispatch(push(`/search/${buildParams(query)}`));
   },
   setDestViaPlace: (e) => {
@@ -78,6 +80,7 @@ class Search extends Component {
       handlePlaceChange,
       setDest,
       setDestViaPlace,
+      handleSubmit,
       setStartDate,
       setPickupTime,
       setEndDate,
@@ -175,8 +178,15 @@ class Search extends Component {
           }
           {dest && startDate && pickupTime && endDate && dropoffTime &&
             <p
+              onClick={handleSubmit({
+                dest,
+                startDate,
+                pickupTime,
+                endDate,
+                dropoffTime,
+              })}
               style={{
-                color: '#fff',
+                color: '#000',
               }}
             >
               --- SUBMIT ---
@@ -196,6 +206,7 @@ Search.propTypes = {
   pickupTime: PropTypes.string,
   endDate: PropTypes.string,
   dropoffTime: PropTypes.string,
+  handleSubmit: PropTypes.func.isRequired,
   handlePlaceChange: PropTypes.func.isRequired,
   setDest: PropTypes.func.isRequired,
   setDestViaPlace: PropTypes.func.isRequired,

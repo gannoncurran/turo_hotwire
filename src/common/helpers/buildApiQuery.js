@@ -1,5 +1,6 @@
 // incoming data structure:
 // dest=some|startDate=times|pickupTime=you|endDate=win|dropoffTime=man
+import moment from 'moment';
 
 const buildParams = query =>
   query
@@ -10,12 +11,24 @@ const buildParams = query =>
     let value = keyValue[1];
 
     switch (key) {
-      case 'startDate':
-        value = value.split('-').join('/');
+      case 'startDate': {
+        const parts = value.split('-');
+        value = moment({
+          year: parts[0],
+          month: parts[1],
+          day: parts[2],
+        }).format('MM/DD/YYYY');
         break;
-      case 'endDate':
-        value = value.split('-').join('/');
+      }
+      case 'endDate': {
+        const parts = value.split('-');
+        value = moment({
+          year: parts[0],
+          month: parts[1],
+          day: parts[2],
+        }).format('MM/DD/YYYY');
         break;
+      }
       default:
         value = keyValue[1];
     }
