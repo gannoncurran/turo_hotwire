@@ -92,9 +92,9 @@
   font-family: 'Playfair Display', serif;
   font-weight: 900;
   padding: 4px 80px 10px;
-  border-top: 1px solid $gray-d;
-  border-bottom: 1px solid $gray-d;
-  color: $white;
+  border-top: 1px solid $gray-6;
+  border-bottom: 1px solid $gray-6;
+  color: $gray-3;
   letter-spacing: 3px;
   font-size: 48px;
   // flex-shrink: 0;
@@ -116,7 +116,7 @@
 
 .welcome-message {
   // background-color: orange;
-  color: $gray-d;
+  color: $gray-3;
   flex-shrink: 1;
   font-size: 20px;
   letter-spacing: .75px;
@@ -126,16 +126,6 @@
   transform: scale(1, 1);
   transform-origin: top center;
   transition: all .5s ease;
-}
-
-.summary {
-  min-width: 320px;
-  background-color: $light-60;
-  text-align: center;
-  width: 100vw;
-  padding: 10px 20px;
-  flex-shrink: 0;
-  flex-grow: 0;
 }
 
 .action-label {

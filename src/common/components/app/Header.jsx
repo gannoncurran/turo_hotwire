@@ -2,14 +2,22 @@
 
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import * as searchFormActions from '../../actions/searchForm';
 
 const mapStateToProps = state => ({
   predictions: state.places.autocompleteData,
   dest: state.searchForm.dest,
+  destName: state.searchForm.destName,
   startDate: state.searchForm.startDate,
   pickupTime: state.searchForm.pickupTime,
   endDate: state.searchForm.endDate,
   dropoffTime: state.searchForm.dropoffTime,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  clearDest: () => { dispatch(searchFormActions.clearDest()); },
+  clearPickup: () => { dispatch(searchFormActions.clearPickup()); },
+  clearDropoff: () => { dispatch(searchFormActions.clearDropoff()); },
 });
 
 class Header extends Component {
@@ -17,10 +25,14 @@ class Header extends Component {
     const {
       predictions,
       dest,
+      destName,
       startDate,
       pickupTime,
       endDate,
       dropoffTime,
+      clearDest,
+      clearPickup,
+      clearDropoff,
     } = this.props;
     return (
       <header
@@ -47,7 +59,41 @@ class Header extends Component {
             </p>
           </div>
         </div>
-        <div className="summary">things<br />things<br />things<br /></div>
+        <div className="summary">
+          {dest &&
+            <div className="summary__item">
+              <p className="summary__title">Location:</p>
+              <p className="summary__text">{destName}</p>
+              <a
+                href="#"
+                onClick={clearDest}
+                className="summary__delete-link"
+              ><span className="icon icon-delete"></span></a>
+            </div>
+          }
+          {startDate || pickupTime &&
+            <div className="summary__item">
+              <p className="summary__title">Pick Up:</p>
+              <p className="summary__text">{destName}</p>
+              <a
+                href="#"
+                onClick={clearPickup}
+                className="summary__delete-link"
+              ><span className="icon icon-delete"></span></a>
+            </div>
+          }
+          {endDate || dropoffTime &&
+            <div className="summary__item">
+              <p className="summary__title">Drop Off:</p>
+              <p className="summary__text">{destName}</p>
+              <a
+                href="#"
+                onClick={clearDropoff}
+                className="summary__delete-link"
+              ><span className="icon icon-delete"></span></a>
+            </div>
+          }
+        </div>
         <div className="action-label">
           <h2 className="action-label__title">
             {
@@ -98,10 +144,14 @@ class Header extends Component {
 Header.propTypes = {
   predictions: PropTypes.array.isRequired,
   dest: PropTypes.string,
+  destName: PropTypes.string,
   startDate: PropTypes.string,
   pickupTime: PropTypes.string,
   endDate: PropTypes.string,
   dropoffTime: PropTypes.string,
+  clearDest: PropTypes.func.isRequired,
+  clearPickup: PropTypes.func.isRequired,
+  clearDropoff: PropTypes.func.isRequired,
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

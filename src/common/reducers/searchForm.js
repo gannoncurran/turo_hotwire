@@ -6,8 +6,10 @@ import {
   SEARCH_FORM_SET_DROPOFFTIME,
 
   SEARCH_FORM_CLEAR_DEST,
+  SEARCH_FORM_CLEAR_PICKUP,
   SEARCH_FORM_CLEAR_STARTDATE,
   SEARCH_FORM_CLEAR_PICKUPTIME,
+  SEARCH_FORM_CLEAR_DROPOFF,
   SEARCH_FORM_CLEAR_ENDDATE,
   SEARCH_FORM_CLEAR_DROPOFFTIME,
 
@@ -60,12 +62,22 @@ const searchForm = (
       return update(state, {
         pickupTime: { $set: null },
       });
+    case SEARCH_FORM_CLEAR_PICKUP:
+      return update(state, {
+        startDate: { $set: null },
+        pickupTime: { $set: null },
+      });
     case SEARCH_FORM_CLEAR_ENDDATE:
       return update(state, {
         endDate: { $set: null },
       });
     case SEARCH_FORM_CLEAR_DROPOFFTIME:
       return update(state, {
+        dropoffTime: { $set: null },
+      });
+    case SEARCH_FORM_CLEAR_DROPOFF:
+      return update(state, {
+        endDate: { $set: null },
         dropoffTime: { $set: null },
       });
     default:

@@ -12,6 +12,9 @@ import {
   SEARCH_FORM_CLEAR_ENDDATE,
   SEARCH_FORM_CLEAR_DROPOFFTIME,
 
+  SEARCH_FORM_CLEAR_PICKUP,
+  SEARCH_FORM_CLEAR_DROPOFF,
+
 } from '../constants';
 
 export function setDest(dest, destName) {
@@ -49,37 +52,44 @@ export function setDropoffTime(dropoffTime) {
   };
 }
 
-export function clearDest(dest) {
+export function clearDest() {
   return {
     type: SEARCH_FORM_CLEAR_DEST,
-    payload: dest,
   };
 }
 
-export function clearStartDate(startDate) {
+export function clearPickup() {
+  return {
+    type: SEARCH_FORM_CLEAR_PICKUP,
+  };
+}
+
+export function clearStartDate() {
   return {
     type: SEARCH_FORM_CLEAR_STARTDATE,
-    payload: startDate,
   };
 }
 
-export function clearPickupTime(pickupTime) {
+export function clearPickupTime() {
   return {
     type: SEARCH_FORM_CLEAR_PICKUPTIME,
-    payload: pickupTime,
   };
 }
 
-export function clearEndDate(endDate) {
+export function clearDropoff() {
+  return {
+    type: SEARCH_FORM_CLEAR_DROPOFF,
+  };
+}
+
+export function clearEndDate() {
   return {
     type: SEARCH_FORM_CLEAR_ENDDATE,
-    payload: endDate,
   };
 }
 
-export function clearDropoffTime(dropoffTime) {
+export function clearDropoffTime() {
   return {
     type: SEARCH_FORM_CLEAR_DROPOFFTIME,
-    payload: dropoffTime,
   };
 }
