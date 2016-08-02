@@ -14,8 +14,9 @@ const Week = ({
     }}
   >
    {
-    days.map((day) => (
+    days.map((day, i) => (
       <Day
+        key={i}
         pickupDate={pickupDate}
         year={year}
         month={month}
