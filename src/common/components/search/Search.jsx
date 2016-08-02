@@ -7,6 +7,9 @@ import * as placesActions from '../../actions/places';
 import { connect } from 'react-redux';
 import { push } from 'react-router-redux';
 import buildParams from '../../helpers/buildParams';
+import moment from 'moment';
+
+import Day from './Day';
 
 const _form = {};
 
@@ -141,17 +144,25 @@ class Search extends Component {
             </ul>
           }
           {dest && !startDate &&
-            <p>
-              <input
-                ref={c => { _form.startDate = c; return; }}
-                onChange={setStartDate}
-                id="start-date"
-                name="startDate"
-                type="text"
-                value={startDate || ''}
+            <div>
+              <p>
+                <input
+                  ref={c => { _form.startDate = c; return; }}
+                  onChange={setStartDate}
+                  id="start-date"
+                  name="startDate"
+                  type="text"
+                  value={startDate || ''}
+                />
+                <label className="label" htmlFor="start-date">Start Date</label>
+              </p>
+              <Day
+                pickupDate={moment().format('YYYY-MM-DD')}
+                year={2016}
+                month={8}
+                day={2}
               />
-              <label className="label" htmlFor="start-date">Start Date</label>
-            </p>
+            </div>
           }
           {dest && startDate && !pickupTime &&
             <p>
