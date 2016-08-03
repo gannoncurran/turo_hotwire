@@ -135,7 +135,6 @@ class Search extends Component {
                   <li
                     className="predictions__item"
                     key={prediction.id}
-                    style={{ color: '#fff' }}
                   >
                     <a
                       id={prediction.place_id}

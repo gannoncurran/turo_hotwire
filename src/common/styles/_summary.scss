@@ -35,6 +35,7 @@
       border-top: 0;
     }
   }
+
   &__marker {
     position: absolute;
     left: 2px;
@@ -77,6 +78,10 @@
 
     &__item {
       padding: 10px 10px 8px;
+    }
+
+    &__marker {
+      height: 38px;
     }
 
     &__title {

@@ -1,0 +1,103 @@
+.timepicker {
+
+  &__group {
+    position: relative;
+    display: inline-block;
+    width: 50%;
+    padding: 0 20px;
+
+    &--am {
+      border-right: 1px solid $gray-6;
+      padding-left: 0;
+    }
+    &--pm {
+      padding-right: 0;
+    }
+  }
+
+  &__button-group {
+    margin-bottom: 40px;
+  }
+
+  &__header,
+  &__footer {
+    margin-top: 0px;
+    // scss-lint:disable NestingDepth
+    &--am {
+      .icon {
+        position: relative;;
+        top: 3px;
+        left: 20px;
+        font-size: 30px;
+        color: $gray-9;
+      }
+    }
+
+    &--pm {
+      .icon {
+        position: relative;;;
+        top: 2px;
+        left: 18px;
+        font-size: 26px;
+        color: $gray-9;
+      }
+    }
+  }
+
+  &__button {
+    font-size: 14px;
+    background-color: transparent;
+    border: 1px solid $gray-9;
+    padding: 10px 5px 8px;
+    width: 50%;
+    transition: background-color .2s ease, color .1s ease;
+
+    &:hover {
+      background-color: $gray-e;
+      transition: background-color .2s ease, color .1s ease;
+    }
+
+    &--pm {
+      background-color: $gray-e;
+      transition: background-color .2s ease, color .1s ease;
+
+      &:hover {
+        background-color: $white;
+        transition: background-color .2s ease, color .1s ease;
+      }
+    }
+
+    &--left {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    &--right {
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+      border-left: 0;
+    }
+
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  .timepicker {
+
+    &__group {
+      display: block;
+      width: 100%;
+
+      &--am,
+      &--pm {
+        border: 0;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+
+    &__footer {
+      display: none;
+    }
+  }
+}

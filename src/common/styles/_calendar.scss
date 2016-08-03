@@ -59,6 +59,7 @@
       color: $gray-c;
       transition: background-color .2s ease, color .1s ease;
 
+      // scss-lint:disable NestingDepth
       &--active {
         cursor: pointer;
         color: $black;
