@@ -131,20 +131,28 @@
 
 .action-label {
   min-width: 320px;
-  background-color: $dim-60;
   text-align: center;
   width: 100vw;
-  padding: 14px 20px 16px;
+  padding: 0;
   flex-shrink: 0;
   flex-grow: 0;
 
   &__title {
     margin: 0;
+    padding: 14px 20px 16px;
+    background-color: $dim-60;
     font-family: 'Playfair Display', serif;
     font-weight: 700;
     font-size: 22px;
     letter-spacing: .5px;
     color: $white;
+
+    &--pickup {
+      background-color: $pickup;
+    }
+    &--dropoff {
+      background-color: $dropoff;
+    }
   }
 }
 

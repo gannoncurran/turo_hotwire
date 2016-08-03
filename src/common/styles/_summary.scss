@@ -71,6 +71,9 @@
     flex-grow: 1;
   }
 
+  &--results {
+    height: 100px;
+  }
 }
 
 @media screen and (max-width: 450px) {
@@ -96,6 +99,10 @@
       margin: 0;
       display: inline-block;
       flex-grow: 1;
+    }
+
+    &--results {
+      height: 145px;
     }
   }
 }

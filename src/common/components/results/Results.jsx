@@ -18,42 +18,58 @@ const mapStateToProps = state => ({
 const Results = ({
   cars,
 }) => (
-  <div>
+  <div
+    className="results"
+  >
     <ReactHelmet title="Results" />
-    {cars.error &&
-      <div>
-        <p>{cars.errorMessage}</p>
-      </div>
-    }
     {cars.isLoading &&
-      <p>Loading…</p>
+      <p
+        className="results__loading"
+      >Loading…</p>
     }
     {!cars.isLoading &&
       cars.data.map((car) => {
         const { type, imgUrl, desc } = metaData[car.CarTypeCode];
         return (
           <a
+            className="results__item"
             href={car.DeepLink}
-            style={{
-              display: 'block',
-              textDecoration: 'none',
-              color: '#000',
-              borderBottom: '1px solid #666',
-            }}
             key={car.HWRefNumber}
           >
-            <img src={imgUrl} alt="desc" />
-            <p>{type}</p>
-            <p>{desc}</p>
-            <p>{car.MileageDescription} miles</p>
-            <p>{car.LocationDescription}</p>
-            <p>{
-                currencySymbols[car.CurrencyCode] || ''
-              }{
-                car.TotalPrice
-              }{
-                currencySymbols[car.CurrencyCode] ? '' : ` (${car.CurrencyCode})`
-              }</p>
+            <img
+              className="results__image"
+              src={imgUrl}
+              alt="desc"
+            />
+            <div className="results__details">
+              <p
+                className="results__type"
+              >{type}</p>
+              <p
+                className="results__desc"
+              >{desc}</p>
+              <p
+                className="results__mileage"
+              >{car.MileageDescription} miles</p>
+              <p
+                className="results__loc-desc"
+              >{car.LocationDescription}</p>
+              <p
+                className="results__price"
+              >
+                <span className="results__currency-symbol">
+                  {currencySymbols[car.CurrencyCode] || ''}
+                </span>
+                {
+                  car.TotalPrice
+                }{
+                  currencySymbols[car.CurrencyCode] ? '' : ` (${car.CurrencyCode})`
+                }
+              </p>
+              <p
+                className="results__fee-note"
+              >Price includes<br />taxes and fees</p>
+            </div>
           </a>
         );
       })

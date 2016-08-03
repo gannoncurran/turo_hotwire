@@ -1,4 +1,4 @@
-import React, { PropTypes } from 'react';
+import React, { Component, PropTypes } from 'react';
 
 import moment from 'moment';
 import { Calendar } from 'calendar';
@@ -33,27 +33,36 @@ const generateMonths = (pickupDate) => {
   return makeMonths(moment(), 11);
 };
 
-const Cal = ({
-    pickupDate,
-    setDate,
-}) => (
-  <div
-    className="calendar"
-  >
-    {
-      generateMonths(pickupDate).map((month, i) => (
-        <Month
-          key={i}
-          pickupDate={pickupDate}
-          year={month.year}
-          month={month.month}
-          weeks={month.weeks}
-          setDate={setDate}
-        />
-      ))
-    }
-  </div>
-);
+class Cal extends Component {
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  render() {
+    const {
+      pickupDate,
+      setDate,
+    } = this.props;
+    return (
+      <div
+        className="calendar"
+      >
+        {
+          generateMonths(pickupDate).map((month, i) => (
+            <Month
+              key={i}
+              pickupDate={pickupDate}
+              year={month.year}
+              month={month.month}
+              weeks={month.weeks}
+              setDate={setDate}
+            />
+          ))
+        }
+      </div>
+    );
+  }
+}
 
 Cal.propTypes = {
   pickupDate: PropTypes.string,

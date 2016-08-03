@@ -5,8 +5,6 @@ import ReactHelmet from 'react-helmet';
 import * as searchFormActions from '../../actions/searchForm';
 import * as placesActions from '../../actions/places';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
-import buildParams from '../../helpers/buildParams';
 
 import Cal from './Cal';
 import TimePicker from './TimePicker';
@@ -24,24 +22,27 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  handleSubmit: (query) => (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    console.log('QUERY', query);
-    console.log(`/search/${buildParams(query)}`);
-    dispatch(push(`/search/${buildParams(query)}`));
-  },
   setDestViaPlace: (e) => {
     e.preventDefault();
     e.stopPropagation();
     dispatch(placesActions.setDestViaPlace(e.target.id));
   },
   handlePlaceChange: () => { dispatch(placesActions.autocomplete(_form.dest.value)); },
-  setDest: (locString, destName) => { dispatch(searchFormActions.setDest(locString, destName)); },
-  setStartDate: (dateString) => () => { dispatch(searchFormActions.setStartDate(dateString)); },
-  setPickupTime: (timeString) => () => { dispatch(searchFormActions.setPickupTime(timeString)); },
-  setEndDate: (dateString) => () => { dispatch(searchFormActions.setEndDate(dateString)); },
-  setDropoffTime: (timeString) => () => { dispatch(searchFormActions.setDropoffTime(timeString)); },
+  setDest: (locString, destName) => {
+    dispatch(searchFormActions.setDest(locString, destName));
+  },
+  setStartDate: (dateString) => () => {
+    dispatch(searchFormActions.setStartDate(dateString));
+  },
+  setPickupTime: (timeString) => () => {
+    dispatch(searchFormActions.setPickupTime(timeString));
+  },
+  setEndDate: (dateString) => () => {
+    dispatch(searchFormActions.setEndDate(dateString));
+  },
+  setDropoffTime: (timeString) => () => {
+    dispatch(searchFormActions.setDropoffTime(timeString));
+  },
 });
 
 class Search extends Component {
@@ -80,7 +81,6 @@ class Search extends Component {
       handlePlaceChange,
       setDest,
       setDestViaPlace,
-      handleSubmit,
       setStartDate,
       setPickupTime,
       setEndDate,
@@ -88,7 +88,13 @@ class Search extends Component {
     } = this.props;
     return (
       <div
-        className={`search${dest ? ' search--white-bg' : ''}`}
+        className={`search${dest && !(
+          dest &&
+          startDate &&
+          pickupTime &&
+          endDate &&
+          dropoffTime
+        ) ? ' search--white-bg' : ''}`}
       >
         <ReactHelmet title="Search" />
         <form
@@ -172,22 +178,7 @@ class Search extends Component {
               setTime={setDropoffTime}
             />
           }
-          {dest && startDate && pickupTime && endDate && dropoffTime &&
-            <p
-              onClick={handleSubmit({
-                dest,
-                startDate,
-                pickupTime,
-                endDate,
-                dropoffTime,
-              })}
-              style={{
-                color: '#000',
-              }}
-            >
-              --- SUBMIT ---
-            </p>
-          }
+
         </form>
       </div>
     );
@@ -202,7 +193,6 @@ Search.propTypes = {
   pickupTime: PropTypes.string,
   endDate: PropTypes.string,
   dropoffTime: PropTypes.string,
-  handleSubmit: PropTypes.func.isRequired,
   handlePlaceChange: PropTypes.func.isRequired,
   setDest: PropTypes.func.isRequired,
   setDestViaPlace: PropTypes.func.isRequired,

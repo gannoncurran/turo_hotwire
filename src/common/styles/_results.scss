@@ -1,0 +1,154 @@
+.results {
+  padding-top: 0;
+  padding-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-shrink: 0;
+  align-items: center;
+  background-color: $light-95;
+  transition: all .75s ease;
+
+  &__loading {
+    font-size: 12px;
+    display: inline-block;
+    padding: 40px 60px;
+    border-radius: 6px;
+    color: $white;
+    position: fixed;
+    z-index: 1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-transform: uppercase;
+    background-color: $dim-25;
+  }
+
+  &__item {
+    width: 100%;
+    max-width: 600px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    text-decoration: none;
+    color: $black;
+    border-bottom: 1px solid $gray-6;
+    padding: 30px 20px 20px 10px;
+    position: relative;
+  }
+
+  &__image {
+    min-width: 100px;
+    width: 20vw;
+    max-width: 200px;
+    flex-grow: 0;
+    padding-top: 10px;
+  }
+
+  &__details {
+    flex-grow: 1;
+    padding: 0 0 0 20px;
+  }
+
+  &__type {
+    max-width: 60%;
+    font-size: 24px;
+    margin: 0;
+    padding: 0;
+    line-height: 30px;
+  }
+
+  &__desc {
+    margin: 0;
+    padding: 0;
+    max-width: 70%;
+  }
+
+  &__mileage {
+    margin: 0;
+    padding: 10px 0 0;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: .5px;
+    color: $gray-9;
+  }
+
+  &__loc-desc {
+    margin: 0;
+    padding: 0;
+    font-size: 12px;
+  }
+
+  &__price {
+    position: absolute;
+    top: 19px;
+    right: 20px;
+    margin: 0;
+    padding: 0;
+    font-size: 30px;
+    letter-spacing: -.5px;
+  }
+
+  &__currency-symbol {
+    font-size: 23px;
+    position: relative;
+    top: -5px;
+
+  }
+
+  &__fee-note {
+    position: absolute;
+    right: 20px;
+    top: 58px;
+    font-size: 9px;
+    text-align: right;
+    line-height: 10px;
+    color: $gray-c;
+  }
+}
+
+@media screen and (max-width: 450px) {
+
+  .results {
+
+    &__item {
+      min-height: 160px;
+      padding: 30px 20px 20px;
+    }
+
+    &__image {
+      padding-top: 0;
+    }
+
+    &__type {
+      max-width: none;
+      font-size: 22px;
+    }
+
+    &__desc {
+      max-width: none;
+      font-size: 13px;
+    }
+
+    &__loc-desc {
+      font-size: 10px;
+    }
+
+    &__price {
+      top: 88px;
+      left: 29px;
+      font-size: 22px;
+    }
+
+    &__currency-symbol {
+      font-size: 14px;
+      top: -7px;
+    }
+
+    &__fee-note {
+      left: 40px;
+      top: 114px;
+      text-align: left;
+    }
+  }
+}
