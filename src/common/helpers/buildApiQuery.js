@@ -15,7 +15,7 @@ const buildParams = query =>
         const parts = value.split('-');
         value = moment({
           year: parts[0],
-          month: parts[1],
+          month: parts[1] - 1,
           day: parts[2],
         }).format('MM/DD/YYYY');
         break;
@@ -24,7 +24,7 @@ const buildParams = query =>
         const parts = value.split('-');
         value = moment({
           year: parts[0],
-          month: parts[1],
+          month: parts[1] - 1,
           day: parts[2],
         }).format('MM/DD/YYYY');
         break;

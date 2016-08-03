@@ -10,12 +10,7 @@ const Week = ({
     setDate,
 }) => (
   <div
-    style={{
-      fontSize: '0',
-      borderBottom: '1px solid #ccc',
-      display: 'flex',
-      justifyContent: 'space-between',
-    }}
+    className="week"
   >
    {
     days.map((day, i) => (

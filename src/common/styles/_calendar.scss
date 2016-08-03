@@ -1,0 +1,107 @@
+.calendar {
+
+  .month {
+    margin-bottom: 80px;
+
+    &__title {
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    &__year {
+      font-size: 20px;
+      color: $gray-9;
+      margin-left: 14px;
+      letter-spacing: 1px;
+    }
+
+    &__day-names {
+      font-size: 10px;
+      text-transform: uppercase;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $gray-c;
+    }
+
+    &__day {
+      width: 50px;
+      text-align: center;
+    }
+  }
+
+  .week {
+    font-size: 0;
+    border-bottom: 1px solid $gray-c;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .day {
+    display: inline-block;
+    margin: 0;
+    padding: 4px;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    overflow: hidden;
+
+    &__number {
+      border-radius: 4px;
+      text-align: center;
+      padding: 10px 0 0;
+      width: 100%;
+      height: 100%;
+      font-size: 16px;
+      display: inline-block;
+      margin: 0;
+      background-color: transparent;
+      cursor: auto;
+      color: $gray-c;
+      transition: background-color .2s ease, color .1s ease;
+
+      &--active {
+        cursor: pointer;
+        color: $black;
+
+        &:hover {
+          background-color: $pickup;
+          color: $white;
+          transition: background-color .2s ease, color .1s ease;
+        }
+      }
+
+      &--puSet {
+        background-color: $pickup;
+        color: $white;
+      }
+
+      &--drop-off {
+        &:hover {
+          background-color: $dropoff;
+          transition: background-color .2s ease, color .1s ease;
+        }
+      }
+
+    }
+  }
+
+}
+
+@media screen and (max-width: 450px) {
+
+  .calendar {
+
+    .month {
+      margin-bottom: 50px;
+
+      &__title {
+        font-size: 18px;
+        margin-bottom: 10px;
+      }
+
+      &__year {
+        font-size: 15px;
+      }
+    }
+  }
+}

@@ -74,9 +74,10 @@ class Header extends Component {
           }
           {(startDate || pickupTime) &&
             <div className="summary__item">
+              <div className="summary__marker summary__marker--pickup"></div>
               <p className="summary__title">Pick Up:</p>
               <p className="summary__text">
-                {moment(startDate, 'YYYY-MM-DD').format('MMMM DD, YYYY')}
+                {moment(startDate, 'YYYY-MM-DD').format('dddd, MMMM DD, YYYY')}
                 {pickupTime ? ` at ${moment(`2016-01-01 ${pickupTime}`, 'YYYY-MM-DD HH:mm').format('h:mm a')}` : ''}
               </p>
               <a
@@ -88,9 +89,10 @@ class Header extends Component {
           }
           {(endDate || dropoffTime) &&
             <div className="summary__item">
+              <div className="summary__marker summary__marker--dropoff"></div>
               <p className="summary__title">Drop Off:</p>
               <p className="summary__text">
-                {moment(endDate, 'YYYY-MM-DD').format('MMMM DD, YYYY')}
+                {moment(endDate, 'YYYY-MM-DD').format('dddd, MMMM DD, YYYY')}
                 {dropoffTime ? ` at ${moment(`2016-01-01 ${dropoffTime}`, 'YYYY-MM-DD HH:mm').format('h:mm a')}` : ''}
               </p>
               <a

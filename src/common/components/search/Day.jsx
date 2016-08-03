@@ -69,31 +69,20 @@ const Day = ({
   );
   return (
     <div
-      style={{
-        display: 'inline-block',
-        margin: '0',
-        padding: '4px',
-        width: '50px',
-        height: '50px',
-        backgroundColor: 'transparent',
-        overflow: 'hidden',
-      }}
+      className="day"
     >
       {day > 0 &&
         <p
           onClick={active ? setDate(`${year}-${month}-${day}`) : (n => n)}
-          style={{
-            cursor: active ? 'pointer' : 'auto',
-            textAlign: 'center',
-            padding: '10px 0 0',
-            width: '100%',
-            height: '100%',
-            fontSize: '16px',
-            display: 'inline-block',
-            backgroundColor: puSet ? 'rgba(0, 100, 200, .3)' : 'transparent',
-            margin: '0',
-            color: active ? '#000' : '#ccc',
-          }}
+          className={
+            `day__number${active
+              ? ' day__number--active'
+              : ''}${puSet
+              ? ' day__number--puSet'
+              : ''}${(!puSet && active && pickupDate)
+              ? ' day__number--drop-off'
+              : ''}`
+          }
         >{renderDay(day)}</p>
       }
     </div>

@@ -20,7 +20,8 @@
   }
 
   &__item {
-    padding: 2px 10px 0;
+    position: relative;
+    padding: 2px 10px 0 12px;
     text-align: left;
     margin-bottom: 2px;
     display: flex;
@@ -32,6 +33,21 @@
     &:first-child {
       margin-top: 2px;
       border-top: 0;
+    }
+  }
+  &__marker {
+    position: absolute;
+    left: 2px;
+    top: 4px;
+    width: 4px;
+    height: 22px;
+
+    &--pickup {
+      background-color: $pickup;
+    }
+
+    &--dropoff {
+      background-color: $dropoff;
     }
   }
 

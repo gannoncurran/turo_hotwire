@@ -11,61 +11,39 @@ const Month = ({
     setDate,
 }) => (
   <div
-    style={{
-      marginBottom: '40px',
-    }}
+    className="month"
   >
-    <h3>{moment(`${year}-${month}`, 'YYYY-MM').format('MMMM YYYY')}</h3>
+    <h3
+      className="month__title"
+    >
+      {moment({ year, month: month - 1 }).format('MMMM')}
+      <span className="month__year">
+        {moment({ year, month: month - 1 }).format('YYYY')}
+      </span>
+    </h3>
     <div
-      style={{
-        fontSize: '10px',
-        textTransform: 'uppercase',
-        display: 'flex',
-        justifyContent: 'space-between',
-        borderBottom: '1px solid #ccc',
-      }}
+      className="month__day-names"
     >
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Sun</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Mon</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Tue</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Wed</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Thu</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Fri</p>
       <p
-        style={{
-          width: '50px',
-          textAlign: 'center',
-        }}
+        className="month__day"
       >Sat</p>
     </div>
    {

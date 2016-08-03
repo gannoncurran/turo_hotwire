@@ -88,10 +88,7 @@ class Search extends Component {
     } = this.props;
     return (
       <div
-        style={{
-          backgroundColor: dest ? 'rgba(255, 255, 255, .94)' : 'transparent',
-        }}
-        className="search"
+        className={`search${dest ? ' search--white-bg' : ''}`}
       >
         <ReactHelmet title="Search" />
         <form

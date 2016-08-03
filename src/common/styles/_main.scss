@@ -20,8 +20,8 @@ body {
 
 .container {
   height: 100vh;
-  min-height: 650px;
-
+  display: flex;
+  flex-direction: column;
 
   // This rule will disable all css transitions - applied to container with js during viewport resizing
   &--no-anim * {

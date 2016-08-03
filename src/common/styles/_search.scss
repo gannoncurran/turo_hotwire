@@ -2,5 +2,20 @@
   padding-top: 60px;
   padding-bottom: 100px;
   display: flex;
+  flex-grow: 1;
+  flex-shrink: 0;
   justify-content: center;
+  background-color: transparent;
+  transition: all .75s ease;
+
+  &--white-bg {
+    background-color: $light-95;
+    transition: all .75s ease;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .search {
+    padding-top: 30px;
+  }
 }

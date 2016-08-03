@@ -11,6 +11,7 @@
   min-width: 320px;
   overflow: hidden;
   transition: all .5s ease;
+  flex-shrink: 0;
 
   &--compact {
     // height: 260px;
@@ -90,12 +91,12 @@
 .hotwired {
   // display: inline-block;
   font-family: 'Playfair Display', serif;
-  font-weight: 900;
+  font-weight: 700;
   padding: 4px 80px 10px;
   border-top: 1px solid $gray-6;
   border-bottom: 1px solid $gray-6;
   color: $gray-3;
-  letter-spacing: 3px;
+  letter-spacing: 2px;
   font-size: 48px;
   // flex-shrink: 0;
   transition: all .5s ease;
@@ -140,9 +141,9 @@
   &__title {
     margin: 0;
     font-family: 'Playfair Display', serif;
-    font-weight: 900;
+    font-weight: 700;
     font-size: 22px;
-    letter-spacing: 1px;
+    letter-spacing: .5px;
     color: $white;
   }
 }

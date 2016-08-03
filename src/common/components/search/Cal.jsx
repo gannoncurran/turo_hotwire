@@ -38,8 +38,7 @@ const Cal = ({
     setDate,
 }) => (
   <div
-    style={{
-    }}
+    className="calendar"
   >
     {
       generateMonths(pickupDate).map((month, i) => (
